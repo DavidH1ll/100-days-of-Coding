@@ -32,7 +32,7 @@ def generate_password():
         
         print("\nYour generated password is:")
         print(f"🔐 {password} 🔐")
-        
+    
     except ValueError as e:
         print(f"Error: {str(e)}")
     except Exception as e:
