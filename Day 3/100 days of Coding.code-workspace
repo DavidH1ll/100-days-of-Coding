@@ -2,12 +2,16 @@
 	"folders": [
 		{
 			"path": ".."
+		},
+		{
+			"path": "E:/Gedot/2d-survivor-course"
 		}
 	],
 	"settings": {
 		"explorer.openEditors.visible": 0,
 		"terminal.integrated.fontSize": 18,
 		"workbench.colorTheme": "Visual Studio Dark",
-		"workbench.statusBar.visible": true
+		"workbench.statusBar.visible": true,
+		"godotTools.editorPath.godot4": "e:\\Gedot\\Godot_v4.3-stable_win64.exe\\Godot_v4.3-stable_win64.exe"
 	}
 }
