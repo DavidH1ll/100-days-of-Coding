@@ -40,7 +40,7 @@ C|====|
       )  (
      (   ) )
       ) ( (
- mrf_______)_
+    _______)_
  .-'---------|  
 ( C|/\/\/\/\/|
  '-./\/\/\/\/|
@@ -54,11 +54,11 @@ C|====|
      ( )  (    ) )
      _____________
     <_____________> ___
-    |             |/ _ \
+    |             |/ _ _
     |               | | |
     |               |_| |
  ___|             |\___/
-/    \___________/    \
+/    \___________/    }
 \_____________________/'
     """
 }
@@ -128,8 +128,6 @@ def make_coffee(drink_name, drink_ingredients, change=0):
     if drink_name in DRINK_ART:
         print(DRINK_ART[drink_name])
         
-    # Pause before showing change
-    sleep(2)
     
     # Show change if any
     if change > 0:
