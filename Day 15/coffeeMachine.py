@@ -126,8 +126,7 @@ def make_coffee(drink_name, drink_ingredients, change=0):
     
     # Show drink art
     if drink_name in DRINK_ART:
-        print(DRINK_ART[drink_name])
-        
+        print(DRINK_ART[drink_name]) 
     
     # Show change if any
     if change > 0:
