@@ -1,0 +1,22 @@
+question_data = [
+    {"text": "The sky is blue.", "answer": True},
+    {"text": "The capital of France is Berlin.", "answer": False},
+    {"text": "Python is a type of snake.", "answer": True},
+    {"text": "The Earth is flat.", "answer": False},
+    {"text": "Water boils at 100 degrees Celsius.", "answer": True},
+    {"text": "The sun rises in the west.", "answer": False},
+    {"text": "There are 26 letters in the English alphabet.", "answer": True},
+    {"text": "The Great Wall of China is visible from space.", "answer": False},
+    {"text": "Light travels faster than sound.", "answer": True},
+    {"text": "Humans have walked on Mars.", "answer": False},
+    {"text": "The Pacific Ocean is the largest ocean on Earth.", "answer": True},
+    {"text": "The human body has four lungs.", "answer": False},
+    {"text": "Mount Everest is the tallest mountain in the world.", "answer": True},
+    {"text": "Venus is the closest planet to the Sun.", "answer": False},
+    {"text": "Shakespeare wrote 'To be, or not to be'.", "answer": True},
+    {"text": "The speed of light is approximately 300,000 kilometers per second.", "answer": True},
+    {"text": "Gold is heavier than silver.", "answer": True},
+    {"text": "The Eiffel Tower is in Italy.", "answer": False},
+    {"text": "The chemical symbol for water is H2O.", "answer": True},
+    {"text": "The human heart has three chambers.", "answer": False}
+]
