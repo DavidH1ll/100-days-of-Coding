@@ -1,3 +1,5 @@
+import os
+
 class QuizBrain:
     def __init__(self, question_list):
         self.question_number = 0
@@ -16,6 +18,9 @@ class QuizBrain:
                 break
             print("Please answer with True or False")
         self.check_answer(user_answer, current_question.answer)
+        self.display_score()
+        input("Press Enter to continue...")
+        os.system('cls' if os.name == 'nt' else 'clear')
 
     def check_answer(self, user_answer: str, correct_answer: str) -> None:
         # Convert answers to strings and lowercase for comparison
@@ -29,3 +34,6 @@ class QuizBrain:
             print("That's wrong.")
         print(f"The correct answer was: {correct_answer.capitalize()}")
         print(f"Your current score is: {self.score}/{self.question_number}\n")
+
+    def display_score(self):
+        print(f"Your current score is: {self.score}/{self.question_number}")

@@ -3,8 +3,4 @@ class Question:
         self.text = text
         self.answer = answer
 
-    def get_question(self):
-        return self.question
-
-    def get_answer(self):
-        return self.answer
+    # Remove unnecessary methods
