@@ -9,16 +9,14 @@
 ### Table of Contents
 
 *   [Introduction](#introduction)
-*   [Features](#features)
-*   [Requirements](#requirements)
-*   [Getting Started](#getting-started)
-*   [Contributing](#contributing)
+*   [Features and tools](#features)
 
-### [Introduction](#introduction)
+
+###  [Introduction](#introduction)
 
 This repository provides a comprehensive example of Python programming. The challenge is designed to cover the basics level to pro level of Python programming, including data types, control structures, functions, and object-oriented programming.
 
-### [Features and tools](#features) 
+### [Features](#features) 
 
 Python 3 - the latest version of Python
 
@@ -120,21 +118,5 @@ Google App Store Analysis
 *   Operating System: Windows, macOS, Linux
 *   IDE: PyCharm, Visual Studio Code, or Sublime Text
 
-### [Getting Started](#getting-started)
 
-1. Clone this repository: `git clone https://github.com/David/your-repo-name.git`
-2. Install dependencies: `pip install -r requirements.txt`
-3. Run the application: `python main.py`
 
-### [Contributing](#contributing)
-
-A guide for contributing to your repository.
-
-*   Fork the repository
-*   Create a new branch: `git checkout -b feature/new-feature`
-*   Make changes and commit them: `git add .` `git commit -m "New feature"`
-*   Push changes to GitHub: `git push origin feature/new-feature`
-
-## License
-
-This project is licensed under [MIT License](https://github.com/David/your-repo-name/LICENSE).
