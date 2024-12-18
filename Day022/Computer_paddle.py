@@ -15,7 +15,7 @@ class ComputerPaddle:
 
     def set_speed(self, difficulty):
         if difficulty == 'easy':
-            return 0.7  # Increased from 0.5
+            return 1  # Increased from 0.5
         elif difficulty == 'hard':
             return 2.0  # Increased from 1.5
         else:  # medium
@@ -34,7 +34,7 @@ class ComputerPaddle:
 
     def move(self, ball_y):
         # Reduce chance of missing
-        if random.random() < 0.3:  # Reduced from 0.1
+        if random.random() < 0.25:  # Reduced from 0.1
             self.missed_frames = self.reaction_delay
             
         if self.missed_frames > 0:

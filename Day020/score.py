@@ -13,13 +13,13 @@ class Score(Turtle):
 
     def read_high_score(self):
         try:
-            with open("./config/data.txt", "r") as file:
+            with open("/data.txt", "r") as file:
                 return int(file.read())
         except FileNotFoundError:
             return 0
 
     def save_high_score(self):
-        with open("./config/data.txt", "w") as file:
+        with open("/data.txt", "w") as file:
             file.write(str(self.high_score))
 
     def update_score(self):
