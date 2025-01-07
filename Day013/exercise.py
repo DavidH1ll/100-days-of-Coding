@@ -12,4 +12,4 @@ def fizz_buzz(target):
             print(number)  # Added square brackets
 
 # Test the function
-fizz_buzz(15)
+fizz_buzz(100)
