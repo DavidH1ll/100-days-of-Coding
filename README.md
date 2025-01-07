@@ -1,7 +1,3 @@
-
-# 
-100-days-of-Coding https://github.com/DavidH1ll/100-days-of-Coding
-
 ## Overview
 
 100 days of coding python project
