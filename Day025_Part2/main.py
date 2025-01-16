@@ -6,6 +6,7 @@ import os
 screen = turtle.Screen()
 screen.title("U.S. States Game")
 screen.setup(width=725, height=491)  # Standard size for US states map
+screen.tracer(0)  # Turn off animation
 
 # Get the directory of the current script
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -19,7 +20,10 @@ if not os.path.exists(image):
 
 # Create background turtle and set image
 screen.addshape(image)
-turtle.shape(image)
+background = turtle.Turtle()
+background.shape(image)
+background.penup()
+background.hideturtle()
 
 # Load state data
 csv_path = os.path.join(current_dir, "50_states.csv")
