@@ -1,4 +1,5 @@
-from tkinter import Tk, Label, Entry, Button, messagebox, StringVar
+from tkinter import Label, Entry, Button, messagebox, Canvas, PhotoImage
+import tkinter as tk
 
 class MyPassUI:
     def __init__(self, master, password_generator=None, password_storage=None, validator=None):
@@ -8,57 +9,89 @@ class MyPassUI:
         self.validator = validator
 
         master.title("MyPass - Password Manager")
+        master.config(padx=50, pady=50)
 
-        self.label = Label(master, text="Password Manager")
-        self.label.pack()
+        # Logo/Canvas
+        self.canvas = Canvas(master, width=200, height=200)
+        try:
+            self.logo_img = PhotoImage(file="logo.png")
+            self.canvas.create_image(100, 100, image=self.logo_img)
+        except:
+            self.canvas.create_text(100, 100, text="🔐", font=("Arial", 60))
+        self.canvas.grid(row=0, column=1)
 
-        self.password_label = Label(master, text="Generated Password:")
-        self.password_label.pack()
+        # Website Label and Entry
+        self.website_label = Label(master, text="Website:")
+        self.website_label.grid(row=1, column=0, sticky="e")
+        
+        self.website_entry = Entry(master, width=35)
+        self.website_entry.grid(row=1, column=1, columnspan=2, sticky="ew")
+        self.website_entry.focus()
 
-        self.password_entry = Entry(master, width=50)
-        self.password_entry.pack()
+        # Email/Username Label and Entry
+        self.email_label = Label(master, text="Email/Username:")
+        self.email_label.grid(row=2, column=0, sticky="e")
+        
+        self.email_entry = Entry(master, width=35)
+        self.email_entry.grid(row=2, column=1, columnspan=2, sticky="ew")
+        self.email_entry.insert(0, "your@email.com")  # Default email
 
+        # Password Label and Entry
+        self.password_label = Label(master, text="Password:")
+        self.password_label.grid(row=3, column=0, sticky="e")
+        
+        self.password_entry = Entry(master, width=21)
+        self.password_entry.grid(row=3, column=1, sticky="ew")
+
+        # Generate Password Button
         self.generate_button = Button(master, text="Generate Password", command=self.generate_password)
-        self.generate_button.pack()
+        self.generate_button.grid(row=3, column=2, sticky="ew")
 
-        self.save_button = Button(master, text="Save Password", command=self.save_password)
-        self.save_button.pack()
-
-        self.status = StringVar()
-        self.status_label = Label(master, textvariable=self.status)
-        self.status_label.pack()
+        # Add Button
+        self.add_button = Button(master, text="Add", width=36, command=self.save_password)
+        self.add_button.grid(row=4, column=1, columnspan=2, sticky="ew")
 
     def generate_password(self):
+        """Generate a random password and insert it into the password field"""
         if self.password_generator:
-            password = self.password_generator.generate_password()
+            password = self.password_generator.generate_password(length=12)
             self.password_entry.delete(0, 'end')
             self.password_entry.insert(0, password)
             try:
                 self.password_generator.copy_to_clipboard(password)
+                messagebox.showinfo("Success", "Password generated and copied to clipboard!")
             except Exception:
-                pass
+                messagebox.showinfo("Success", "Password generated!")
         else:
             self.password_entry.delete(0, 'end')
-            self.password_entry.insert(0, "GeneratedPassword123!")  # Example password
+            self.password_entry.insert(0, "GeneratedPassword123!")
 
     def save_password(self):
+        """Save the password entry after validation"""
+        website = self.website_entry.get()
+        email = self.email_entry.get()
         password = self.password_entry.get()
-        if password:
+
+        # Validate all fields
+        if not self.validator or not self.validator.validate_all(website, email, password):
+            messagebox.showwarning("Warning", "Please don't leave any fields empty!")
+            return
+
+        # Confirm before saving
+        is_ok = messagebox.askokcancel(
+            title=website,
+            message=f"These are the details entered:\nEmail: {email}\nPassword: {password}\n\nIs it ok to save?"
+        )
+
+        if is_ok:
             if self.password_storage:
-                self.password_storage.add_password("website", "username", password)
-            self.status.set("Password saved successfully!")
-            messagebox.showinfo("Success", "Password saved successfully!")
-        else:
-            self.status.set("Please generate a password first.")
-            messagebox.showwarning("Warning", "Please generate a password first.")
+                self.password_storage.add_password(website, email, password)
+                messagebox.showinfo("Success", "Password saved successfully!")
+                
+                # Clear the fields
+                self.website_entry.delete(0, 'end')
+                self.password_entry.delete(0, 'end')
 
 def create_ui(root, password_generator, password_storage, validator):
-    MyPassUI(root, password_generator, password_storage, validator)
-
-def main():
-    root = Tk()
-    my_pass_ui = MyPassUI(root)
-    root.mainloop()
-
-if __name__ == "__main__":
-    main()
+    """Create and return the UI instance"""
+    return MyPassUI(root, password_generator, password_storage, validator)
