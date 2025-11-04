@@ -24,9 +24,13 @@ class MyPassUI:
         self.website_label = Label(master, text="Website:")
         self.website_label.grid(row=1, column=0, sticky="e")
         
-        self.website_entry = Entry(master, width=35)
-        self.website_entry.grid(row=1, column=1, columnspan=2, sticky="ew")
+        self.website_entry = Entry(master, width=21)
+        self.website_entry.grid(row=1, column=1, sticky="ew")
         self.website_entry.focus()
+
+        # Search Button
+        self.search_button = Button(master, text="Search", command=self.search_password)
+        self.search_button.grid(row=1, column=2, sticky="ew")
 
         # Email/Username Label and Entry
         self.email_label = Label(master, text="Email/Username:")
@@ -91,6 +95,34 @@ class MyPassUI:
                 # Clear the fields
                 self.website_entry.delete(0, 'end')
                 self.password_entry.delete(0, 'end')
+
+    def search_password(self):
+        """Search for a password by website name"""
+        website = self.website_entry.get()
+        
+        if not website:
+            messagebox.showwarning("Warning", "Please enter a website name to search!")
+            return
+        
+        if self.password_storage:
+            result = self.password_storage.search_password(website)
+            
+            if result:
+                self.email_entry.delete(0, 'end')
+                self.email_entry.insert(0, result["email"])
+                self.password_entry.delete(0, 'end')
+                self.password_entry.insert(0, result["password"])
+                
+                # Copy password to clipboard
+                if self.password_generator:
+                    try:
+                        self.password_generator.copy_to_clipboard(result["password"])
+                    except Exception:
+                        pass
+                
+                messagebox.showinfo("Found", f"Password found for {website}!\nPassword copied to clipboard.")
+            else:
+                messagebox.showinfo("Not Found", f"No password found for {website}.")
 
 def create_ui(root, password_generator, password_storage, validator):
     """Create and return the UI instance"""
