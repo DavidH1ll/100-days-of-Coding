@@ -88,9 +88,3 @@ Some days include additional README files with day-specific setup and usage.
 ---
 
 If you spot an issue or want to suggest improvements, feel free to open an issue or PR.
-
-
-Pong Game
-
-
-
