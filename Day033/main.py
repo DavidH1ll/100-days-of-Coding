@@ -31,6 +31,11 @@ SUN_API = "https://api.sunrise-sunset.org/json?lat={lat}&lng={lng}&formatted=0"
 
 
 def get_env_bool(key: str, default: bool = False) -> bool:
+	"""Return an environment variable parsed as a boolean.
+
+	Accepts common truthy strings: {"1", "true", "yes", "on"} (case-insensitive).
+	If the variable is missing, returns ``default``.
+	"""
 	val = os.getenv(key)
 	if val is None:
 		return default
@@ -38,6 +43,7 @@ def get_env_bool(key: str, default: bool = False) -> bool:
 
 
 def get_env_float(key: str, default: float) -> float:
+	"""Return an environment variable parsed as ``float`` or ``default`` on error."""
 	val = os.getenv(key)
 	try:
 		return float(val) if val is not None else default
@@ -46,6 +52,10 @@ def get_env_float(key: str, default: float) -> float:
 
 
 def fetch_json(url: str) -> Optional[dict]:
+	"""Fetch a URL and return parsed JSON, or ``None`` on failure.
+
+	Network errors and JSON parsing issues are caught and logged as warnings.
+	"""
 	try:
 		with urlopen(url, timeout=20) as resp:
 			data = resp.read()
@@ -56,6 +66,11 @@ def fetch_json(url: str) -> Optional[dict]:
 
 
 def get_iss_position() -> Optional[Tuple[float, float]]:
+	"""Return the current ISS latitude/longitude as floats, or ``None``.
+
+	Uses the Open Notify ISS API. If the response indicates failure or values
+	cannot be parsed, returns ``None``.
+	"""
 	data = fetch_json(ISS_API)
 	if not data or data.get("message") != "success":
 		return None
@@ -69,6 +84,11 @@ def get_iss_position() -> Optional[Tuple[float, float]]:
 
 
 def get_sun_times(lat: float, lng: float) -> Optional[Tuple[datetime, datetime]]:
+	"""Get today's sunrise and sunset times (UTC) for a location.
+
+	Returns a tuple ``(sunrise_utc, sunset_utc)`` as timezone-aware datetimes
+	in UTC, or ``None`` if the API call fails or values can't be parsed.
+	"""
 	url = SUN_API.format(lat=lat, lng=lng)
 	data = fetch_json(url)
 	if not data or data.get("status") != "OK":
@@ -84,6 +104,12 @@ def get_sun_times(lat: float, lng: float) -> Optional[Tuple[datetime, datetime]]
 
 
 def is_night_now(lat: float, lng: float, now_utc: Optional[datetime] = None) -> Optional[bool]:
+	"""Determine if it's currently night at a location (using UTC times).
+
+	Night is defined as the period after today's local sunset until the next
+	local sunrise. Returns ``True`` if night, ``False`` if day, or ``None`` if
+	sunrise/sunset could not be determined.
+	"""
 	now_utc = now_utc or datetime.now(timezone.utc)
 	times = get_sun_times(lat, lng)
 	if not times:
@@ -94,7 +120,11 @@ def is_night_now(lat: float, lng: float, now_utc: Optional[datetime] = None) -> 
 
 
 def angular_distance_deg(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
-	# Spherical law of cosines for approximate angular distance in degrees
+	"""Approximate great-circle angular distance in degrees.
+
+	Uses the spherical law of cosines. Result is clamped to handle rounding
+	errors that might push values outside the valid domain of ``acos``.
+	"""
 	rlat1, rlon1, rlat2, rlon2 = map(math.radians, [lat1, lon1, lat2, lon2])
 	cos_d = math.sin(rlat1) * math.sin(rlat2) + math.cos(rlat1) * math.cos(rlat2) * math.cos(rlon2 - rlon1)
 	# Clamp due to float rounding
@@ -103,11 +133,17 @@ def angular_distance_deg(lat1: float, lon1: float, lat2: float, lon2: float) -> 
 
 
 def is_iss_overhead(lat: float, lng: float, iss_lat: float, iss_lng: float, threshold_deg: float = 5.0) -> bool:
+	"""Return True if ISS is within ``threshold_deg`` angular distance."""
 	dist = angular_distance_deg(lat, lng, iss_lat, iss_lng)
 	return dist <= threshold_deg
 
 
 def build_message(from_addr: str, to_addr: str, subject: str, body: str, from_name: Optional[str] = None) -> EmailMessage:
+	"""Create a simple plaintext email message object.
+
+	``from_name`` (if provided) will be added as a display name for the From
+	header. The body is set as ``text/plain``.
+	"""
 	msg = EmailMessage()
 	msg["From"] = f"{from_name} <{from_addr}>" if from_name else from_addr
 	msg["To"] = to_addr
@@ -117,6 +153,11 @@ def build_message(from_addr: str, to_addr: str, subject: str, body: str, from_na
 
 
 def send_email(msg: EmailMessage) -> None:
+	"""Send an email message using SMTP configuration from environment.
+
+	Requires EMAIL_USER and EMAIL_PASS. Uses TLS if USE_TLS=true (default).
+	Raises RuntimeError when credentials are missing.
+	"""
 	server = os.getenv("SMTP_SERVER", "smtp.gmail.com")
 	port = int(os.getenv("SMTP_PORT", "587"))
 	use_tls = get_env_bool("USE_TLS", True)
@@ -133,7 +174,16 @@ def send_email(msg: EmailMessage) -> None:
 		smtp.send_message(msg)
 
 
+
 def check_and_notify(override_dry_run: Optional[bool] = None, override_force: Optional[bool] = None) -> int:
+	"""Core workflow: determine conditions and send/print notification.
+
+	Returns an exit-like status code:
+	  0 -> Success or no action needed
+	  1 -> Transient data issue (API fetch failed) – safe to retry
+	  2 -> Configuration error (invalid LAT/LNG)
+	  3 -> Email send failure
+	"""
 	# Read config
 	try:
 		lat = float(os.getenv("LAT", "0"))
@@ -216,6 +266,13 @@ def check_and_notify(override_dry_run: Optional[bool] = None, override_force: Op
 
 
 def main(argv: list[str]) -> int:
+	"""Entry point parsing CLI flags and optionally looping.
+
+	Flags:
+	  --dry-run  : force dry-run regardless of env
+	  --force    : force notification regardless of conditions
+	  --loop     : run continuously using CHECK_INTERVAL
+	"""
 	loop = "--loop" in argv
 	override_force = "--force" in argv
 	override_dry = "--dry-run" in argv
