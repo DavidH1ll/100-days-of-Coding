@@ -21,6 +21,11 @@ import time
 from email.message import EmailMessage
 from datetime import datetime, timezone
 from typing import Optional, List, Dict
+from pathlib import Path
+
+# Load environment variables from .env file
+from dotenv import load_dotenv
+load_dotenv()
 
 from weather import fetch_forecast, simplify_forecast, will_precipitate_periods
 
