@@ -1,0 +1,91 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+.venv/
+venv/
+ENV/
+env/
+.virtualenv/
+
+# Environment variables - CRITICAL: Contains API keys!
+.env
+*.env
+!.env.example
+
+# IDE - VS Code
+.vscode/
+*.code-workspace
+
+# IDE - PyCharm
+.idea/
+*.iml
+*.iws
+out/
+
+# IDE - Other
+*.swp
+*.swo
+*.swn
+*~
+.project
+.pydevproject
+
+# OS Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# Project Specific
+Output/
+output/
+*.log
+*.csv
+!birthdays.csv
+!50_states.csv
+!squirrel_count.csv
+!2018_Central_Park_Squirrel_Census_-_Squirrel_Data.csv
+!weather_data.csv
+!french_words.csv
+
+# Sensitive Data
+passwords.txt
+
+# Test Files
+test_*.py
+*_test.py
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Documentation
+*.pdf
+*.doc
+*.docx
