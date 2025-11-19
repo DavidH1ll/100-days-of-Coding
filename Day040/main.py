@@ -1,184 +1,202 @@
 """
-Customer acquisition module - handles user sign-up and validation.
+Day 40: Flight Club - User Sign-up & Email Notifications (Capstone Part 2)
 """
 
 import os
-import re
-import requests
-from typing import Dict, Optional
-
-SHEETY_USERS_ENDPOINT = os.getenv("SHEETY_USERS_ENDPOINT", "")
-SHEETY_TOKEN = os.getenv("SHEETY_TOKEN", "")
-
-
-class CustomerAcquisition:
-    def __init__(self):
-        self.headers = {"Authorization": f"Bearer {SHEETY_TOKEN}"} if SHEETY_TOKEN else {}
-    
-    def validate_email(self, email: str) -> bool:
-        """Validate email format using regex."""
-        pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
-        return re.match(pattern, email) is not None
-    
-    def validate_name(self, name: str) -> bool:
-        """Validate name (letters, spaces, hyphens only)."""
-        pattern = r'^[a-zA-Z\s\-]+$'
-        return len(name) >= 2 and re.match(pattern, name) is not None
-    
-    def add_user(self, first_name: str, last_name: str, email: str) -> bool:
-        """Add user to Google Sheets via Sheety."""
-        if not SHEETY_USERS_ENDPOINT:
-            print("❌ SHEETY_USERS_ENDPOINT not configured.")
-            return False
-        
-        # Sheety payload format (adjust key if sheet name differs)
-        body = {
-            "user": {
-                "firstName": first_name.title(),
-                "lastName": last_name.title(),
-                "email": email.lower()
-            }
-        }
-        
-        try:
-            response = requests.post(
-                SHEETY_USERS_ENDPOINT,
-                json=body,
-                headers=self.headers,
-                timeout=15
-            )
-            response.raise_for_status()
-            print(f"✅ Successfully added {first_name} {last_name} to Flight Club!")
-            return True
-        
-        except requests.exceptions.RequestException as e:
-            print(f"❌ Failed to add user: {e}")
-            return False
-    
-    def register_users(self):
-        """Interactive CLI for registering multiple users."""
-        print("\n🎯 Welcome to Flight Club!")
-        print("Get daily emails with the cheapest flight deals.\n")
-        
-        while True:
-            print("-" * 60)
-            
-            # Get first name
-            while True:
-                first_name = input("First Name: ").strip()
-                if self.validate_name(first_name):
-                    break
-                print("❌ Invalid name. Use letters, spaces, or hyphens only.")
-            
-            # Get last name
-            while True:
-                last_name = input("Last Name: ").strip()
-                if self.validate_name(last_name):
-                    break
-                print("❌ Invalid name. Use letters, spaces, or hyphens only.")
-            
-            # Get email with confirmation
-            while True:
-                email = input("Email: ").strip()
-                if not self.validate_email(email):
-                    print("❌ Invalid email format. Try again.")
-                    continue
-                
-                email_confirm = input("Confirm Email: ").strip()
-                if email.lower() == email_confirm.lower():
-                    break
-                print("❌ Emails don't match. Try again.")
-            
-            # Add to sheet
-            self.add_user(first_name, last_name, email)
-            
-            # Ask if more users
-            more = input("\nRegister another user? (y/n): ").strip().lower()
-            if more != 'y':
-                print("\n✅ Registration complete!")
-                break
-
+import sys
 from datetime import datetime, timedelta
-import os
-import requests
+from typing import List, Dict
 
 try:
     from dotenv import load_dotenv
     load_dotenv()
-except Exception:
+except ImportError:
     pass
 
+from customer_acquisition import CustomerAcquisition
 from flight_search import FlightSearch
 from data_manager import DataManager
 from notification_manager import NotificationManager
 
-ORIGIN_IATA = os.getenv("ORIGIN_IATA", "LON")  # e.g., LON, DUB, JFK
+ORIGIN_IATA = os.getenv("ORIGIN_IATA", "LON")
 CURRENCY = os.getenv("CURRENCY", "GBP")
+NIGHTS_MIN = int(os.getenv("NIGHTS_MIN", "5"))
+NIGHTS_MAX = int(os.getenv("NIGHTS_MAX", "21"))
 
-def date_range_months(months: int = 6):
-    start = (datetime.now() + timedelta(days=1)).strftime("%d/%m/%Y")
-    end = (datetime.now() + timedelta(days=30 * months)).strftime("%d/%m/%Y")
-    return start, end
 
-def main():
+def check_configuration() -> bool:
+    """Validate required environment variables."""
+    required = {
+        "TEQUILA_API_KEY": "Tequila flight search API key",
+        "SHEETY_PRICES_ENDPOINT": "Google Sheets prices endpoint"
+    }
+    
+    missing = []
+    for var, desc in required.items():
+        if not os.getenv(var):
+            missing.append(f"  ❌ {var} ({desc})")
+    
+    if missing:
+        print("\n⚠️  Missing required environment variables:")
+        for m in missing:
+            print(m)
+        print("\n📝 Create a .env file in Day040 folder with:")
+        print("   TEQUILA_API_KEY=your_key")
+        print("   SHEETY_PRICES_ENDPOINT=https://api.sheety.co/xxx/flightDeals/prices")
+        print("\n💡 Copy .env.example to .env and fill in your values.\n")
+        return False
+    
+    return True
+
+
+def find_cheap_flights() -> List[Dict]:
+    """Search for flights cheaper than threshold prices."""
     dm = DataManager()
     fs = FlightSearch(currency=CURRENCY)
-    notifier = NotificationManager()
-
-    # 1) Load destinations (Google Sheet via Sheety)
-    destinations = dm.get_destinations()  # [{id, city, iataCode, lowestPrice}, ...]
-
-    # 2) Backfill IATA codes if missing
+    
+    destinations = dm.get_destinations()
+    
+    # Backfill IATA codes if missing
     updated = False
     for row in destinations:
         if not row.get("iataCode"):
             row["iataCode"] = fs.get_iata_code(row["city"])
             updated = True
+    
     if updated:
         dm.update_iata_codes(destinations)
-
-    # 3) Search flights next 6 months
-    date_from, date_to = date_range_months(6)
-    for row in destinations:
-        target_price = float(row["lowestPrice"])
-        dest_iata = row["iataCode"]
+    
+    # Search for deals
+    date_from = (datetime.now() + timedelta(days=1)).strftime("%d/%m/%Y")
+    date_to = (datetime.now() + timedelta(days=180)).strftime("%d/%m/%Y")
+    
+    deals = []
+    
+    for dest in destinations:
+        target_price = float(dest["lowestPrice"])
+        dest_iata = dest["iataCode"]
+        
+        if not dest_iata:
+            continue
+        
+        # Try direct flight
         result = fs.search_round_trip(
             fly_from=ORIGIN_IATA,
             fly_to=dest_iata,
             date_from=date_from,
             date_to=date_to,
-            nights_min=int(os.getenv("NIGHTS_MIN", "5")),
-            nights_max=int(os.getenv("NIGHTS_MAX", "21")),
+            nights_min=NIGHTS_MIN,
+            nights_max=NIGHTS_MAX,
             max_stopovers=0,
         )
-
+        
+        # Try with 1 stopover if no direct
         if not result:
-            # Optional: try with one stopover
             result = fs.search_round_trip(
                 fly_from=ORIGIN_IATA,
                 fly_to=dest_iata,
                 date_from=date_from,
                 date_to=date_to,
-                nights_min=int(os.getenv("NIGHTS_MIN", "5")),
-                nights_max=int(os.getenv("NIGHTS_MAX", "21")),
+                nights_min=NIGHTS_MIN,
+                nights_max=NIGHTS_MAX,
                 max_stopovers=1,
             )
+        
+        if result and result["price"] < target_price:
+            deals.append({
+                "city": dest["city"],
+                "price": result["price"],
+                "origin": f"{result['cityFrom']} ({result['flyFrom']})",
+                "destination": f"{result['cityTo']} ({result['flyTo']})",
+                "out_date": result["out_date"],
+                "return_date": result["return_date"],
+                "link": result["link"],
+                "savings": target_price - result["price"]
+            })
+            print(f"✓ Found deal: {dest['city']} for {CURRENCY}{result['price']} (saves {CURRENCY}{target_price - result['price']})")
+    
+    return deals
 
-        if not result:
-            print(f"No flight found for {row['city']}.")
-            continue
 
-        price = result["price"]
-        if price < target_price:
-            msg = (
-                f"Low price alert! Only {CURRENCY} {price} to fly "
-                f"{result['cityFrom']} ({result['flyFrom']}) → {result['cityTo']} ({result['flyTo']}), "
-                f"{result['out_date']} to {result['return_date']}. {result['link']}"
+def notify_users(deals: List[Dict]):
+    """Send email notifications to all registered users."""
+    if not deals:
+        print("No deals found today.")
+        return
+    
+    dm = DataManager()
+    users = dm.get_users()
+    
+    if not users:
+        print("No users registered yet.")
+        return
+    
+    notifier = NotificationManager()
+    
+    # Format email body
+    email_body = "🎉 Flight Club - Today's Best Deals!\n\n"
+    email_body += f"We found {len(deals)} amazing flight deal(s) for you:\n\n"
+    
+    for i, deal in enumerate(deals, 1):
+        email_body += f"{i}. {deal['city']}\n"
+        email_body += f"   Price: {CURRENCY}{deal['price']} (save {CURRENCY}{deal['savings']}!)\n"
+        email_body += f"   Route: {deal['origin']} → {deal['destination']}\n"
+        email_body += f"   Dates: {deal['out_date']} to {deal['return_date']}\n"
+        email_body += f"   Book: {deal['link']}\n\n"
+    
+    email_body += "\nHappy travels! ✈️\n- Flight Club Team"
+    
+    # Send to all users
+    for user in users:
+        email = user.get("email")
+        first_name = user.get("firstName", "Traveler")
+        
+        if email:
+            personalized_body = f"Hi {first_name},\n\n{email_body}"
+            notifier.send_email(
+                to_email=email,
+                subject=f"Flight Club Alert: {len(deals)} Cheap Flight(s) Found!",
+                body=personalized_body
             )
-            print(msg)
-            notifier.send(msg)
+            print(f"✓ Sent email to {first_name} ({email})")
+
+
+def main():
+    """Main CLI."""
+    if not check_configuration():
+        sys.exit(1)
+    
+    print("=" * 60)
+    print("✈️  FLIGHT CLUB - Your Personal Flight Deal Hunter")
+    print("=" * 60)
+    print("\nWhat would you like to do?")
+    print("1. Register new users")
+    print("2. Search for flight deals and notify users")
+    print("3. Exit")
+    
+    choice = input("\nEnter choice (1/2/3): ").strip()
+    
+    if choice == "1":
+        print("\n--- User Registration ---")
+        ca = CustomerAcquisition()
+        ca.register_users()
+    
+    elif choice == "2":
+        print("\n--- Searching for Flight Deals ---")
+        deals = find_cheap_flights()
+        
+        if deals:
+            print(f"\n✅ Found {len(deals)} deal(s)!")
+            notify_users(deals)
         else:
-            print(f"{row['city']}: found {CURRENCY} {price} (threshold {target_price}).")
+            print("\n❌ No deals found cheaper than thresholds.")
+    
+    elif choice == "3":
+        print("\n👋 Goodbye!")
+    
+    else:
+        print("\n❌ Invalid choice.")
+
 
 if __name__ == "__main__":
     main()
