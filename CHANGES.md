@@ -40,7 +40,6 @@ This document summarizes all improvements made to prepare the "100 Days of Codin
 ---
 
 ### 3. `requirements.txt` - Dependency Management
-**Created**: `d:\Visual Studio Projects\100 days of Coding\requirements.txt`
 
 **Purpose**: Centralized Python package management for the entire repository
 

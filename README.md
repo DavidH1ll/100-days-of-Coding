@@ -1,7 +1,7 @@
 # 100 Days of Coding (Python)
 
 ![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)
-![Progress](https://img.shields.io/badge/Progress-36%2F100-brightgreen.svg)
+![Progress](https://img.shields.io/badge/Progress-42%2F100-brightgreen.svg)
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 A curated, day-by-day journey to practice and level up Python skills through small projects and focused exercises.
@@ -26,26 +26,28 @@ This repository documents progress across 100 days of Python. Topics range from 
 
 ## Progress Tracker
 
-**✅ Days 1-36 Complete** | 🔄 Days 37-100 In Progress
+**✅ Days 1-42 Complete** | 🔄 Days 43-100 In Progress
 
 ### Completed Milestones
 - ✅ **Days 1-10**: Python Fundamentals (variables, control flow, functions, dictionaries)
 - ✅ **Days 11-20**: Intermediate Concepts (OOP, turtle graphics, file handling)
 - ✅ **Days 21-30**: Advanced Projects (games, data processing, APIs)
 - ✅ **Days 31-36**: Automation & APIs (email, weather, stock monitoring)
+- ✅ **Days 37-40**: Python APIs & Email Automation (Pixela, Exercise Tracker, Flight Finder, Flight Club)
+- ✅ **Days 41-42**: HTML & CSS Fundamentals (Movie Ranking, Birthday Invite)
 
 ## Featured Projects
 
 | Day | Project | Technologies | Description |
 |-----|---------|--------------|-------------|
+| **Day 42** | 🎉 Birthday Invite Website | HTML, Images, Lists, Links | Interactive birthday party invitation with venue map and gift list |
+| **Day 41** | 🎬 Movie Ranking Website | HTML, CSS, Semantic Structure | Personal movie review website with rankings and descriptions |
+| **Day 40** | ✈️ Flight Club (Productized) | Tequila API, Sheety, SMTP, Customer Signup | Complete flight deal finder with user management and email notifications |
 | **Day 36** | 📈 Stock News Monitor | Alpha Vantage API, NewsAPI, Twilio | Tracks stock price changes and sends news alerts via SMS/Email |
 | **Day 35** | 🌦️ Weather Alert System | OpenWeatherMap API | Analyzes 12-hour forecast and sends precipitation alerts |
 | **Day 34** | 🧠 Quizzler App | Tkinter, Open Trivia API | Interactive quiz application with GUI |
 | **Day 33** | 🛰️ ISS Tracker | Open Notify API, Sunrise-Sunset API | Notifies when ISS passes overhead at night |
 | **Day 32** | 🎂 Birthday Email Automation | SMTP, CSV | Sends personalized birthday emails automatically |
-| **Day 23** | 🐢 Turtle Crossing Game | Turtle Graphics, OOP | Frogger-style game with collision detection |
-| **Day 20-21** | 🐍 Snake Game | Turtle Graphics, OOP | Classic snake game with scorekeeping |
-| **Day 15-16** | ☕ Coffee Machine | OOP | Simulated coffee machine with inventory management |
 
 ## Repository Structure
 
