@@ -1,125 +1,192 @@
 """
-Day 45 - Web Scraping with BeautifulSoup
-Extract movie data from websites using BeautifulSoup4 and requests
+Day 45 - Scraping and Saving the Top 100 Movies List
+Extract the top 100 greatest movies of all time from Empire Magazine
+and save them to a text file in order from 1 to 100.
 
-This project demonstrates how to:
-1. Request a webpage using the requests library
-2. Parse HTML using BeautifulSoup
-3. Extract specific data elements from the HTML
-4. Organize and display the extracted data
+Project Goals:
+1. Use requests to fetch the Empire top 100 movies webpage
+2. Use BeautifulSoup to parse the HTML structure
+3. Extract all movie titles from <h3 class='title'> elements
+4. Reverse the list (since it's ordered 100 to 1, not 1 to 100)
+5. Save the movies to a text file (movies.txt)
 """
 
 import requests
 from bs4 import BeautifulSoup
+import os
+
+# Empire's Top 100 Greatest Movies of All Time
+# Note: This URL may change, check course resources for the current URL
+URL = "https://web.archive.org/web/20200518073855/https://www.empireonline.com/movies/features/best-movies-2/"
+
+# Get the directory where this script is located
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+MOVIES_FILE = os.path.join(SCRIPT_DIR, 'movies.txt')
 
 # ============================================================================
-# Example 1: Simple HTML Parsing
+# Main Scraper Function
 # ============================================================================
 
-def example_simple_parsing():
-    """Demonstrate basic BeautifulSoup parsing with a simple HTML string"""
+def scrape_top_100_movies():
+    """
+    Scrape the Empire top 100 movies list from the website
+    and save it to a text file.
+    """
     print("=" * 70)
-    print("Example 1: Simple HTML Parsing")
+    print("Day 45: Scraping Top 100 Greatest Movies")
     print("=" * 70)
+    print()
     
-    # Sample HTML content
-    html_content = """
+    try:
+        print("📥 Fetching webpage...")
+        # Make a GET request to the website
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+        }
+        response = requests.get(URL, headers=headers, timeout=10)
+        response.raise_for_status()
+        
+        print("✅ Page fetched successfully!\n")
+        
+        # Get the raw HTML content
+        website_html = response.text
+        
+        print("🔍 Parsing HTML with BeautifulSoup...")
+        # Parse the HTML using BeautifulSoup
+        soup = BeautifulSoup(website_html, 'html.parser')
+        
+        print("✅ HTML parsed successfully!\n")
+        
+        print("🎬 Searching for movie titles...")
+        # Find all movie titles - they are in <h3> tags with class 'title'
+        all_movies = soup.find_all('h3', class_='title')
+        
+        print(f"✅ Found {len(all_movies)} movies!\n")
+        
+        if len(all_movies) == 0:
+            print("⚠️  Warning: No movies found. The website structure may have changed.")
+            print("Please verify the URL and HTML structure.\n")
+            return False
+        
+        print("📝 Extracting movie titles...")
+        # Extract just the text from each h3 element using getText()
+        movie_titles = [movie.getText().strip() for movie in all_movies]
+        
+        print(f"✅ Extracted {len(movie_titles)} movie titles!\n")
+        
+        # Display first 5 and last 5 movies to verify extraction
+        print("First 5 movies (before reversal - should be 100-96):")
+        for i, movie in enumerate(movie_titles[:5], 1):
+            print(f"  {i}. {movie}")
+        
+        print("\nLast 5 movies (before reversal - should be 5-1):")
+        for i, movie in enumerate(movie_titles[-5:], len(movie_titles) - 4):
+            print(f"  {i}. {movie}")
+        print()
+        
+        print("🔄 Reversing the list (currently 100→1, need 1→100)...")
+        # Reverse the list so it starts from 1 instead of 100
+        # Using slice notation [::-1] to reverse the entire list
+        movies = movie_titles[::-1]
+        
+        print("✅ List reversed!\n")
+        
+        # Verify reversal
+        print("After reversal - First 5 movies (should now be 1-5):")
+        for i, movie in enumerate(movies[:5], 1):
+            print(f"  {i}. {movie}")
+        
+        print("\nAfter reversal - Last 5 movies (should now be 96-100):")
+        for i, movie in enumerate(movies[-5:], len(movies) - 4):
+            print(f"  {i}. {movie}")
+        print()
+        
+        print("💾 Writing movies to movies.txt...")
+        # Write the movies to a text file in write mode
+        with open(MOVIES_FILE, 'w', encoding='utf-8') as file:
+            for movie in movies:
+                file.write(movie + '\n')
+        
+        print("✅ Successfully saved to movies.txt!\n")
+        
+        print("=" * 70)
+        print("Project Complete! 🎉")
+        print("=" * 70)
+        print(f"\n✅ Saved {len(movies)} movies to '{MOVIES_FILE}'")
+        print("\nYou can now:")
+        print("  • Open movies.txt to view the complete list")
+        print("  • Watch movies and cross them off the list")
+        print("  • Pick a random movie to watch next")
+        print("\nNote: There is a known typo at #93 in the original Empire list.\n")
+        
+        return True
+        
+    except requests.exceptions.RequestException as e:
+        print(f"\n❌ Error fetching the website: {e}")
+        print("This website may block automated requests or the URL may have changed.")
+        print("Please check the course resources for the current URL.\n")
+        return False
+    except Exception as e:
+        print(f"\n❌ An error occurred: {e}\n")
+        return False
+
+
+# ============================================================================
+# Educational Example
+# ============================================================================
+
+def demonstrate_scraping_concepts():
+    """
+    Demonstrate key BeautifulSoup and web scraping concepts
+    using a local HTML example.
+    """
+    print("\n" + "=" * 70)
+    print("Educational Example: How Web Scraping Works")
+    print("=" * 70 + "\n")
+    
+    # Example HTML - simulating a simple movie list
+    example_html = """
     <html>
-        <head>
-            <title>Movie List</title>
-        </head>
         <body>
-            <h1>Top Movies of All Time</h1>
-            <div class="movie-item">
-                <h2>Inception</h2>
-                <p class="rating">Rating: 8.8/10</p>
-                <p class="year">Year: 2010</p>
-            </div>
-            <div class="movie-item">
-                <h2>The Matrix</h2>
-                <p class="rating">Rating: 8.7/10</p>
-                <p class="year">Year: 1999</p>
+            <div class="movies">
+                <h3 class="title">100. Movie Name Here</h3>
+                <h3 class="title">99. Another Movie</h3>
+                <h3 class="title">98. Third Movie</h3>
             </div>
         </body>
     </html>
     """
     
-    # Create a BeautifulSoup object
-    soup = BeautifulSoup(html_content, 'html.parser')
+    print("Step 1: Parse HTML with BeautifulSoup")
+    print("-" * 70)
+    soup = BeautifulSoup(example_html, 'html.parser')
+    print("✓ HTML parsed\n")
     
-    # Extract the title
-    title = soup.find('title').string
-    print(f"\nPage Title: {title}\n")
+    print("Step 2: Find all <h3> elements with class='title'")
+    print("-" * 70)
+    all_movies = soup.find_all('h3', class_='title')
+    print(f"✓ Found {len(all_movies)} elements\n")
     
-    # Extract all movies
-    movies = soup.find_all('div', class_='movie-item')
-    print(f"Found {len(movies)} movies:\n")
+    print("Step 3: Extract text using getText()")
+    print("-" * 70)
+    movie_titles = [movie.getText() for movie in all_movies]
+    for i, title in enumerate(movie_titles, 1):
+        print(f"  {i}. {title}")
+    print()
     
-    for i, movie in enumerate(movies, 1):
-        movie_name = movie.find('h2').string
-        rating = movie.find('p', class_='rating').string
-        year = movie.find('p', class_='year').string
-        
-        print(f"{i}. {movie_name}")
-        print(f"   {rating}")
-        print(f"   {year}\n")
-
-
-# ============================================================================
-# Example 2: Web Scraping from a Real Website
-# ============================================================================
-
-def scrape_movie_data():
-    """
-    Scrape movie data from a real website
+    print("Step 4: Reverse the list using [::-1]")
+    print("-" * 70)
+    reversed_movies = movie_titles[::-1]
+    for i, title in enumerate(reversed_movies, 1):
+        print(f"  {i}. {title}")
+    print()
     
-    Note: This example uses a public website with no robots.txt restrictions
-    Always check a website's terms of service and robots.txt before scraping
-    """
-    print("=" * 70)
-    print("Example 2: Web Scraping Movie Data")
-    print("=" * 70)
-    
-    try:
-        # Example: Scraping from a website (using IMDb Top 250 as example)
-        # Note: This is educational; always respect website terms of service
-        
-        url = "https://www.imdb.com/chart/top250/"
-        
-        print(f"\nAttempting to scrape: {url}\n")
-        print("Note: This requires the website to allow scraping.\n")
-        
-        # Add headers to avoid being blocked
-        headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
-        }
-        
-        # Send GET request
-        response = requests.get(url, headers=headers, timeout=5)
-        response.raise_for_status()
-        
-        # Parse the HTML
-        soup = BeautifulSoup(response.content, 'html.parser')
-        
-        # Find movie titles (IMDb structure)
-        movies = soup.find_all('h3', class_='ipc-title__text')
-        
-        print(f"Successfully fetched page. Found {len(movies)} movies.\n")
-        print("Top 10 Movies:")
-        print("-" * 70)
-        
-        for i, movie in enumerate(movies[:10], 1):
-            title = movie.string.strip()
-            # Extract ranking number
-            rank = title.split('.')[0] if '.' in title else i
-            movie_name = title.split('. ', 1)[1] if '. ' in title else title
-            
-            print(f"{rank}. {movie_name}")
-        
-    except requests.exceptions.RequestException as e:
-        print(f"Error fetching the website: {e}")
-        print("Note: Some websites block automated requests.")
-        print("This is normal and expected for many websites.\n")
+    print("Step 5: Write to file")
+    print("-" * 70)
+    print("with open('movies.txt', 'w') as file:")
+    print("    for movie in reversed_movies:")
+    print("        file.write(movie + '\\n')")
+    print("✓ File created\n")
 
 
 # ============================================================================
@@ -265,16 +332,10 @@ def main():
     print()
     
     # Run examples
-    example_simple_parsing()
+    demonstrate_scraping_concepts()
     print("\n")
     
-    scrape_movie_data()
-    print("\n")
-    
-    analyze_local_html()
-    print("\n")
-    
-    advanced_parsing_example()
+    scrape_top_100_movies()
     
     # Summary
     print("=" * 70)
