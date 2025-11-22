@@ -1,0 +1,122 @@
+/* Day 44 - Motivational Poster Website */
+/* CSS Stylesheet */
+
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: black;
+    font-family: Arial, sans-serif;
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Poster Container - Centered horizontally and vertically */
+.poster-container {
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 100px;
+    text-align: center;
+}
+
+/* Main Title - Using Custom Google Font */
+h1 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 4em;
+    font-weight: 700;
+    color: white;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    letter-spacing: 3px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Image Styling */
+img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border: 5px solid white;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+}
+
+img:hover {
+    transform: scale(1.02);
+}
+
+/* Paragraph Text */
+p {
+    font-size: 1.3em;
+    line-height: 1.6;
+    color: white;
+    font-style: italic;
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Responsive Design - Tablet */
+@media (max-width: 768px) {
+    .poster-container {
+        width: 80%;
+        margin-left: 10%;
+        margin-top: 50px;
+    }
+
+    h1 {
+        font-size: 2.5em;
+        letter-spacing: 2px;
+    }
+
+    p {
+        font-size: 1.1em;
+    }
+}
+
+/* Responsive Design - Mobile */
+@media (max-width: 480px) {
+    .poster-container {
+        width: 90%;
+        margin-left: 5%;
+        margin-top: 30px;
+    }
+
+    h1 {
+        font-size: 1.8em;
+        letter-spacing: 1px;
+        margin-bottom: 20px;
+    }
+
+    img {
+        max-width: 300px;
+        border: 4px solid white;
+        margin-bottom: 20px;
+    }
+
+    p {
+        font-size: 1em;
+    }
+}
+
+/* Print Styles */
+@media print {
+    body {
+        background-color: black;
+    }
+
+    .poster-container {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+}
