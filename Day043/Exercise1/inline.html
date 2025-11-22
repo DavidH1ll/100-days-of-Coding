@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inline CSS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .nav-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #6c757d;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .nav-button:hover {
+            background-color: #5a6268;
+        }
+        .info-box {
+            background-color: #e3f2fd;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            border-left: 4px solid #2196F3;
+        }
+        code {
+            background-color: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="nav-button">← Back to Home</a>
+
+    <h1 style="color: blue;">📘 Style me in BLUE with Inline CSS!</h1>
+
+    <div class="info-box">
+        <h2>What is Inline CSS?</h2>
+        <p>Inline CSS is a method of applying styles directly to an HTML element using the <code>style</code> attribute.</p>
+        
+        <h3>Syntax</h3>
+        <pre><code>&lt;h1 style="color: blue;"&gt;Style me in blue!&lt;/h1&gt;</code></pre>
+
+        <h3>How It Works</h3>
+        <ul>
+            <li>The <code>style</code> attribute goes inside the opening HTML tag</li>
+            <li>CSS properties and values are written as key-value pairs</li>
+            <li>Multiple properties are separated by semicolons</li>
+            <li>Example: <code>style="color: blue; font-size: 24px;"</code></li>
+        </ul>
+
+        <h3>When to Use</h3>
+        <ul>
+            <li>✅ Styling a single, unique element</li>
+            <li>✅ Quick testing or prototyping</li>
+            <li>✅ Temporary overrides</li>
+            <li>❌ NOT recommended for entire stylesheets</li>
+            <li>❌ Difficult to maintain across multiple elements</li>
+        </ul>
+
+        <h3>Advantages</h3>
+        <ul>
+            <li>Simple for one-off styles</li>
+            <li>No need for separate CSS files</li>
+            <li>High specificity (overrides other CSS)</li>
+        </ul>
+
+        <h3>Disadvantages</h3>
+        <ul>
+            <li>Hard to maintain and update</li>
+            <li>Clutters HTML markup</li>
+            <li>Cannot reuse styles across multiple elements</li>
+            <li>Violates separation of concerns principle</li>
+        </ul>
+    </div>
+
+</body>
+</html>

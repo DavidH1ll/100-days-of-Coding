@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>External CSS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <a href="index.html" class="nav-button">← Back to Home</a>
+
+    <h1>📙 Style me in GREEN with External CSS!</h1>
+
+    <div class="info-box">
+        <h2>What is External CSS?</h2>
+        <p>External CSS is a method of applying styles using a separate <code>.css</code> file that is linked to the HTML document.</p>
+        
+        <h3>Syntax</h3>
+        <p><strong>In HTML:</strong></p>
+        <pre><code>&lt;link rel="stylesheet" href="style.css"&gt;</code></pre>
+        <p><strong>In style.css:</strong></p>
+        <pre><code>h1 {
+  color: green;
+}</code></pre>
+
+        <h3>How It Works</h3>
+        <ul>
+            <li>CSS rules are written in a separate file with a <code>.css</code> extension</li>
+            <li>The CSS file is linked to HTML using a <code>&lt;link&gt;</code> tag in the <code>&lt;head&gt;</code></li>
+            <li>The <code>rel</code> attribute specifies the relationship (stylesheet)</li>
+            <li>The <code>href</code> attribute points to the CSS file location</li>
+            <li>Styles apply to all pages that link to the CSS file</li>
+        </ul>
+
+        <h3>When to Use</h3>
+        <ul>
+            <li>✅ Best practice for all websites</li>
+            <li>✅ Multi-page websites and applications</li>
+            <li>✅ Large projects requiring consistent styling</li>
+            <li>✅ Separation of concerns and maintainability</li>
+            <li>✅ Professional web development</li>
+        </ul>
+
+        <h3>Advantages</h3>
+        <ul>
+            <li>Cleaner, more readable HTML</li>
+            <li>Styles reused across multiple pages</li>
+            <li>Easy to maintain and update (one file to modify)</li>
+            <li>Smaller HTML file sizes</li>
+            <li>Browser can cache CSS file for better performance</li>
+            <li>Separation of HTML structure and CSS styling</li>
+        </ul>
+
+        <h3>Disadvantages</h3>
+        <ul>
+            <li>Requires an additional HTTP request to load CSS file</li>
+            <li>Slightly more complex setup than inline CSS</li>
+        </ul>
+
+        <h3>Best Practices</h3>
+        <ul>
+            <li>Use external CSS for all production websites</li>
+            <li>Organize CSS files logically (main.css, utilities.css, etc.)</li>
+            <li>Use meaningful CSS selectors and classes</li>
+            <li>Keep CSS modular and reusable</li>
+            <li>Consider using CSS preprocessors (SCSS, LESS) for large projects</li>
+        </ul>
+    </div>
+
+</body>
+</html>
