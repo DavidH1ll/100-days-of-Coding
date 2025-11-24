@@ -1,5 +1,5 @@
 """
-Day 49 - Form Automation and Element Interaction with Selenium
+Day 49 - Form Automation and Element Interaction with Selenium 
 
 Master the art of interacting with web elements programmatically.
 This lesson focuses on practical techniques for form filling, button clicking,
