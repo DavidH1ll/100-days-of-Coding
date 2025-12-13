@@ -1,6 +1,6 @@
 """
 Day 52 - Instagram Follower Bot Examples
-Working code examples demonstrating how to use the bot
+Working code examples demonstrating how to use the bot 
 
 Each example is self-contained and ready to run.
 Uncomment the examples you want to execute at the bottom.
