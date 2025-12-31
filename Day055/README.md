@@ -382,7 +382,10 @@ def slow_function():
 22. `http://127.0.0.1:5000/demo/logging` - Logging decorator (check terminal output)
 23. `http://127.0.0.1:5000/demo/speed` - Speed test decorator (check terminal output)
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> df7a00c1baca331c7f2f5e855fcaf27079fd394f
 ## Common Errors and Solutions
 
 ### TypeError: Unexpected Keyword Argument
