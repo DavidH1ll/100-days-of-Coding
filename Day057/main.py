@@ -9,7 +9,7 @@ blog_posts = [
         'id': 1,
         'title': 'The Life of Cactus',
         'subtitle': 'Who knew that cacti lived such interesting lives.',
-        'author': 'Angela Yu',
+        'author': 'David Hill',
         'date': 'May 5, 2024',
         'body': '''
         <p>Nori grape silver beet broccoli kombu beet greens fava bean potato quandong celery. 
@@ -30,7 +30,7 @@ blog_posts = [
         'id': 2,
         'title': 'Top 15 Things to Do When You Are Bored',
         'subtitle': 'Are you bored? Don\'t know what to do? Try these top 15 activities.',
-        'author': 'Jack Bauer',
+        'author': 'David Hill',
         'date': 'June 12, 2024',
         'body': '''
         <p>Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth 
@@ -49,7 +49,7 @@ blog_posts = [
         'id': 3,
         'title': 'Introduction to Jinja',
         'subtitle': 'Learn about the Jinja templating engine.',
-        'author': 'Emily Rodriguez',
+        'author': 'David Hill',
         'date': 'July 20, 2024',
         'body': '''
         <p>Jinja is a modern and designer-friendly templating language for Python, modelled after Django's 
