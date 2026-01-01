@@ -1,7 +1,7 @@
 # 100 Days of Coding (Python)
 
 ![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)
-![Progress](https://img.shields.io/badge/Progress-42%2F100-brightgreen.svg)
+![Progress](https://img.shields.io/badge/Progress-56%2F100-brightgreen.svg)
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 A curated, day-by-day journey to practice and level up Python skills through small projects and focused exercises.
@@ -26,7 +26,7 @@ This repository documents progress across 100 days of Python. Topics range from 
 
 ## Progress Tracker
 
-**✅ Days 1-42 Complete** | 🔄 Days 43-100 In Progress
+**✅ Days 1-56 Complete** | 🔄 Days 57-100 In Progress
 
 ### Completed Milestones
 - ✅ **Days 1-10**: Python Fundamentals (variables, control flow, functions, dictionaries)
@@ -35,11 +35,13 @@ This repository documents progress across 100 days of Python. Topics range from 
 - ✅ **Days 31-36**: Automation & APIs (email, weather, stock monitoring)
 - ✅ **Days 37-40**: Python APIs & Email Automation (Pixela, Exercise Tracker, Flight Finder, Flight Club)
 - ✅ **Days 41-42**: HTML & CSS Fundamentals (Movie Ranking, Birthday Invite)
+- ✅ **Days 43-56**: Web Development with Flask (templates, static files, routing)
 
 ## Featured Projects
 
 | Day | Project | Technologies | Description |
 |-----|---------|--------------|-------------|
+| **Day 56** | 💼 Personal Name Card | Flask, HTML, CSS, Jinja2 | Modern web-based business card with routing and static files |
 | **Day 42** | 🎉 Birthday Invite Website | HTML, Images, Lists, Links | Interactive birthday party invitation with venue map and gift list |
 | **Day 41** | 🎬 Movie Ranking Website | HTML, CSS, Semantic Structure | Personal movie review website with rankings and descriptions |
 | **Day 40** | ✈️ Flight Club (Productized) | Tequila API, Sheety, SMTP, Customer Signup | Complete flight deal finder with user management and email notifications |
