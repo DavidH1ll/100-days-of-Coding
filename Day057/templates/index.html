@@ -1,15 +1,12 @@
-{% extends "base.html" %}
+{% include "header.html" %}
 
-{% block title %}Home - My Blog{% endblock %}
-
-{% block content %}
-<!-- Hero Section -->
-<div class="hero">
+<!-- Masthead with Background Image -->
+<header class="masthead" style="background-image: url('{{ url_for('static', filename='assets/img/home-bg.jpg') }}');">
     <div class="container text-center">
         <h1>Welcome to My Blog</h1>
         <p>Discover interesting stories and articles</p>
     </div>
-</div>
+</header>
 
 <!-- Blog Posts -->
 <div class="container">
@@ -33,4 +30,5 @@
         {% endfor %}
     </div>
 </div>
-{% endblock %}
+
+{% include "footer.html" %}

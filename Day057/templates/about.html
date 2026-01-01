@@ -1,0 +1,40 @@
+{% include "header.html" %}
+
+<!-- About Masthead with Background Image -->
+<header class="masthead" style="background-image: url('{{ url_for('static', filename='assets/img/about-bg.jpg') }}');">
+    <div class="container text-center">
+        <h1>About Me</h1>
+        <p>This is what I do.</p>
+    </div>
+</header>
+
+<!-- About Content -->
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <article class="post-content">
+                <h2>Welcome to My Blog</h2>
+                <p>Hi! I'm a passionate writer and developer who loves sharing thoughts and ideas through this blog. 
+                I believe in the power of words to inspire, educate, and connect people from all walks of life.</p>
+                
+                <h3>What I Write About</h3>
+                <p>On this blog, you'll find a variety of topics including:</p>
+                <ul>
+                    <li>Technology and programming</li>
+                    <li>Personal development and productivity</li>
+                    <li>Creative writing and storytelling</li>
+                    <li>Life experiences and reflections</li>
+                </ul>
+                
+                <h3>My Mission</h3>
+                <p>My goal is to create content that resonates with readers and provides value. Whether you're here 
+                to learn something new, find inspiration, or simply enjoy a good read, I hope you'll find what 
+                you're looking for.</p>
+                
+                <p>Thank you for visiting, and I hope you enjoy exploring the blog!</p>
+            </article>
+        </div>
+    </div>
+</div>
+
+{% include "footer.html" %}
