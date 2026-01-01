@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}{{ post.title }} - My Blog{% endblock %}
+
+{% block content %}
+<!-- Post Hero -->
+<div class="hero">
+    <div class="container">
+        <h1>{{ post.title }}</h1>
+        <p class="lead">{{ post.subtitle }}</p>
+        <p class="post-meta">
+            <span>By {{ post.author }}</span> | 
+            <span>{{ post.date }}</span>
+        </p>
+    </div>
+</div>
+
+<!-- Post Content -->
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <article class="post-content">
+                {{ post.body|safe }}
+            </article>
+            
+            <hr class="my-5">
+            
+            <div class="text-center">
+                <a href="{{ url_for('home') }}" class="btn btn-primary">
+                    ← Back to Home
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
