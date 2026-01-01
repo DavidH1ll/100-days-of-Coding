@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap 12-Column Layout Examples</title>
+    
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        body {
+            padding: 20px;
+        }
+        .example-box {
+            background-color: #e9ecef;
+            border: 2px solid #6c757d;
+            padding: 20px;
+            margin: 10px 0;
+            text-align: center;
+            min-height: 80px;
+        }
+        .section-title {
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #0d6efd;
+            color: white;
+            border-radius: 5px;
+        }
+        .description {
+            background-color: #fff3cd;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-left: 4px solid #ffc107;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mb-5">Bootstrap 12-Column Layout System</h1>
+
+        <!-- Example 1: Equal Columns -->
+        <div class="section-title">
+            <h2>Example 1: Equal Width Columns</h2>
+        </div>
+        <div class="description">
+            Three columns with equal width using <code>col</code> class. Bootstrap automatically distributes space equally.
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="example-box">Column 1</div>
+            </div>
+            <div class="col">
+                <div class="example-box">Column 2</div>
+            </div>
+            <div class="col">
+                <div class="example-box">Column 3</div>
+            </div>
+        </div>
+
+        <!-- Example 2: Sized Columns -->
+        <div class="section-title">
+            <h2>Example 2: Sized Columns (2-4-6)</h2>
+        </div>
+        <div class="description">
+            Three columns with specific sizes: <code>col-2</code>, <code>col-4</code>, and <code>col-6</code>. Total adds up to 12.
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <div class="example-box">2/12</div>
+            </div>
+            <div class="col-4">
+                <div class="example-box">4/12</div>
+            </div>
+            <div class="col-6">
+                <div class="example-box">6/12</div>
+            </div>
+        </div>
+
+        <!-- Example 3: Navigation Layout -->
+        <div class="section-title">
+            <h2>Example 3: Navigation Layout (2-10)</h2>
+        </div>
+        <div class="description">
+            Common layout: narrow sidebar (<code>col-2</code>) and wide main content (<code>col-10</code>).
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <div class="example-box">Sidebar<br>Navigation</div>
+            </div>
+            <div class="col-10">
+                <div class="example-box">Main Content Area</div>
+            </div>
+        </div>
+
+        <!-- Example 4: Responsive Columns -->
+        <div class="section-title">
+            <h2>Example 4: Responsive Columns</h2>
+        </div>
+        <div class="description">
+            Columns that change size based on screen width:<br>
+            - <code>col-sm-12</code>: Full width on small screens<br>
+            - <code>col-md-6</code>: Half width on medium screens<br>
+            - <code>col-lg-4</code>: One-third width on large screens
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="example-box">Responsive Box 1</div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="example-box">Responsive Box 2</div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="example-box">Responsive Box 3</div>
+            </div>
+        </div>
+
+        <!-- Example 5: Mixed Sizing -->
+        <div class="section-title">
+            <h2>Example 5: Mixed Sized and Auto Columns</h2>
+        </div>
+        <div class="description">
+            Mix fixed size columns with auto-sized: <code>col-2</code>, <code>col</code>, <code>col-4</code>. 
+            The middle column automatically takes remaining space.
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <div class="example-box">Fixed 2</div>
+            </div>
+            <div class="col">
+                <div class="example-box">Auto (remaining space)</div>
+            </div>
+            <div class="col-4">
+                <div class="example-box">Fixed 4</div>
+            </div>
+        </div>
+
+        <!-- Container Types -->
+        <div class="section-title">
+            <h2>Container Types Demonstration</h2>
+        </div>
+        <div class="description">
+            Scroll down to see different container types
+        </div>
+    </div>
+
+    <!-- Container Fluid Example -->
+    <div class="container-fluid mt-5" style="background-color: #d1ecf1; padding: 20px;">
+        <h3>Container Fluid</h3>
+        <p>This section uses <code>container-fluid</code> and spans the full width of the viewport on all screen sizes.</p>
+        <div class="row">
+            <div class="col-4">
+                <div class="example-box">Column 1</div>
+            </div>
+            <div class="col-4">
+                <div class="example-box">Column 2</div>
+            </div>
+            <div class="col-4">
+                <div class="example-box">Column 3</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Breakpoint Reference -->
+    <div class="container mt-5 mb-5">
+        <div class="section-title">
+            <h2>Bootstrap Breakpoints Reference</h2>
+        </div>
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Breakpoint</th>
+                    <th>Class Infix</th>
+                    <th>Dimensions</th>
+                    <th>Device Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Extra small</td>
+                    <td>None</td>
+                    <td>&lt; 576px</td>
+                    <td>Foldable phones</td>
+                </tr>
+                <tr>
+                    <td>Small</td>
+                    <td>sm</td>
+                    <td>≥ 576px</td>
+                    <td>Mobile devices</td>
+                </tr>
+                <tr>
+                    <td>Medium</td>
+                    <td>md</td>
+                    <td>≥ 768px</td>
+                    <td>Tablets</td>
+                </tr>
+                <tr>
+                    <td>Large</td>
+                    <td>lg</td>
+                    <td>≥ 992px</td>
+                    <td>Laptops</td>
+                </tr>
+                <tr>
+                    <td>Extra large</td>
+                    <td>xl</td>
+                    <td>≥ 1200px</td>
+                    <td>Desktops</td>
+                </tr>
+                <tr>
+                    <td>Extra extra large</td>
+                    <td>xxl</td>
+                    <td>≥ 1400px</td>
+                    <td>Large screens</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

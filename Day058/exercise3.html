@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 3: Dynamic Sidebar Layout</title>
+    
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        body {
+            padding: 20px;
+        }
+        .sidebar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            margin: 10px 0;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .main-content {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 40px 20px;
+            margin: 10px 0;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .instructions {
+            background-color: #e7f3ff;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-left: 4px solid #2196F3;
+            border-radius: 5px;
+        }
+        .breakpoint-indicator {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div class="breakpoint-indicator">
+        <span class="d-xxl-inline d-none">XXL (≥1400px)</span>
+        <span class="d-xl-inline d-xxl-none d-none">XL (≥1200px)</span>
+        <span class="d-lg-inline d-xl-none d-none">LG (≥992px)</span>
+        <span class="d-md-inline d-lg-none d-none">MD (≥768px)</span>
+        <span class="d-sm-inline d-md-none d-none">SM (≥576px)</span>
+        <span class="d-inline d-sm-none">XS (&lt;576px)</span>
+    </div>
+
+    <div class="container">
+        <h1 class="text-center mb-4">Exercise 3: Dynamic Proportional Layout</h1>
+        
+        <div class="instructions">
+            <h3>📱 Instructions</h3>
+            <p><strong>Goal:</strong> Create a two-column layout where proportions change dramatically across breakpoints:</p>
+            <ul>
+                <li><strong>XXL (≥1400px):</strong> 1-11 split (tiny sidebar, huge content)</li>
+                <li><strong>XL (≥1200px):</strong> 2-10 split (small sidebar, large content)</li>
+                <li><strong>LG (≥992px):</strong> 4-8 split (medium sidebar, large content)</li>
+                <li><strong>MD (≥768px):</strong> 6-6 split (equal columns)</li>
+                <li><strong>SM/XS (&lt;768px):</strong> 12-12 (full width, stacked)</li>
+            </ul>
+            <p><strong>Watch the indicator in the top-right corner!</strong></p>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar: Grows as screen gets smaller -->
+            <div class="col-12 col-md-6 col-lg-4 col-xl-2 col-xxl-1">
+                <div class="sidebar">
+                    <h3>📱 Sidebar</h3>
+                    <hr>
+                    <p><strong>Classes:</strong></p>
+                    <p>col-12<br>col-md-6<br>col-lg-4<br>col-xl-2<br>col-xxl-1</p>
+                    <hr>
+                    <p>Watch me grow as you shrink the screen!</p>
+                </div>
+            </div>
+            
+            <!-- Main Content: Shrinks as screen gets smaller -->
+            <div class="col-12 col-md-6 col-lg-8 col-xl-10 col-xxl-11">
+                <div class="main-content">
+                    <h3>📄 Main Content</h3>
+                    <hr>
+                    <p><strong>Classes:</strong></p>
+                    <p>col-12<br>col-md-6<br>col-lg-8<br>col-xl-10<br>col-xxl-11</p>
+                    <hr>
+                    <p>Watch me shrink as you shrink the screen!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert alert-info mt-4">
+            <strong>💡 Explanation:</strong>
+            <ul class="mb-0">
+                <li><code>col-xxl-1</code> and <code>col-xxl-11</code> = 1+11=12 on XXL screens</li>
+                <li><code>col-xl-2</code> and <code>col-xl-10</code> = 2+10=12 on XL screens</li>
+                <li><code>col-lg-4</code> and <code>col-lg-8</code> = 4+8=12 on LG screens</li>
+                <li><code>col-md-6</code> and <code>col-md-6</code> = 6+6=12 on MD screens (equal split)</li>
+                <li><code>col-12</code> = Full width on SM and XS screens (stacked vertically)</li>
+            </ul>
+        </div>
+
+        <div class="alert alert-warning mt-3">
+            <strong>🔍 Try This:</strong> Open Chrome DevTools (F12), click the device toolbar icon, and drag the viewport 
+            width slider to see how the layout transforms at each breakpoint!
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

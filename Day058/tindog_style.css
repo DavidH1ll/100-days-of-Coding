@@ -1,0 +1,164 @@
+/* TinDog Custom Styles */
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Animated Gradient Background */
+.gradient-background {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Title Section */
+#title {
+    padding-bottom: 50px;
+}
+
+#title h1 {
+    line-height: 1.2;
+}
+
+.title-image {
+    width: 60%;
+    transform: rotate(25deg);
+    position: relative;
+    left: 50px;
+}
+
+.download-btn {
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+/* Features Section */
+#features {
+    background-color: #fff;
+    padding: 60px 0;
+}
+
+.feature-icon {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+#features h3 {
+    font-weight: bold;
+    color: #333;
+}
+
+#features p {
+    color: #6c757d;
+    line-height: 1.6;
+}
+
+/* Testimonials Section */
+#testimonials {
+    padding: 80px 0;
+}
+
+.testimonial-text {
+    line-height: 1.5;
+}
+
+.profile-img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border: 3px solid white;
+}
+
+/* Press Section */
+#press {
+    background-color: #fff;
+    padding: 40px 0;
+}
+
+.press-logo {
+    height: 30px;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.press-logo:hover {
+    opacity: 1;
+}
+
+/* Pricing Section */
+#pricing {
+    background-color: #fff;
+    padding: 80px 0;
+}
+
+.pricing-card-title {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+#pricing .card {
+    border-radius: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#pricing .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+#pricing .card-header {
+    border-radius: 15px 15px 0 0;
+    font-weight: bold;
+}
+
+/* Footer */
+#footer {
+    padding: 40px 0 20px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .title-image {
+        width: 80%;
+        transform: rotate(0);
+        left: 0;
+        margin-top: 30px;
+    }
+    
+    #title h1 {
+        font-size: 2rem;
+    }
+    
+    .testimonial-text {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    #title h1 {
+        font-size: 1.5rem;
+    }
+    
+    .download-btn {
+        width: 100%;
+        margin-right: 0;
+    }
+    
+    .testimonial-text {
+        font-size: 1.25rem;
+    }
+}
