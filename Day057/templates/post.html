@@ -1,10 +1,7 @@
-{% extends "base.html" %}
+{% include "header.html" %}
 
-{% block title %}{{ post.title }} - My Blog{% endblock %}
-
-{% block content %}
-<!-- Post Hero -->
-<div class="hero">
+<!-- Post Masthead with Background Image -->
+<header class="masthead" style="background-image: url('{{ url_for('static', filename='assets/img/post-bg.jpg') }}');">
     <div class="container">
         <h1>{{ post.title }}</h1>
         <p class="lead">{{ post.subtitle }}</p>
@@ -13,14 +10,14 @@
             <span>{{ post.date }}</span>
         </p>
     </div>
-</div>
+</header>
 
 <!-- Post Content -->
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-lg-8">
             <article class="post-content">
-                {{ post.body|safe }}
+                <p>{{ post.body }}</p>
             </article>
             
             <hr class="my-5">
@@ -33,4 +30,5 @@
         </div>
     </div>
 </div>
-{% endblock %}
+
+{% include "footer.html" %}

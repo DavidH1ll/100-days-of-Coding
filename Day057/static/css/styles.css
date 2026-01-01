@@ -1,0 +1,135 @@
+/* Custom Styles for Blog */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Navbar Styles */
+.navbar {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.navbar.navbar-shrink {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white !important;
+}
+
+/* Masthead / Hero Section with Background */
+.masthead {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    padding: 8rem 0 6rem;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.masthead::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.7) 0%, rgba(118, 75, 162, 0.7) 100%);
+}
+
+.masthead .container {
+    position: relative;
+    z-index: 1;
+}
+
+.masthead h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.masthead p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* Hero Section (for pages without background image) */
+.hero {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 4rem 0;
+    margin-bottom: 3rem;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* Post Card Styles */
+.post-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 2rem;
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.post-title {
+    color: #667eea;
+    font-weight: bold;
+}
+
+.post-subtitle {
+    color: #6c757d;
+    font-size: 0.95rem;
+}
+
+.post-meta {
+    color: #999;
+    font-size: 0.85rem;
+}
+
+/* Button Styles */
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    transition: transform 0.2s ease;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+}
+
+/* Footer Styles */
+footer {
+    margin-top: 4rem;
+    padding: 2rem 0;
+    background-color: #343a40;
+    color: white;
+}
+
+/* Post Content Styles */
+.post-content {
+    line-height: 1.8;
+    font-size: 1.1rem;
+    color: #333;
+}
