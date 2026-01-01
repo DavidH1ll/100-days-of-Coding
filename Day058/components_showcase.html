@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Components Showcase</title>
+    
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    
+    <style>
+        body {
+            padding-bottom: 50px;
+        }
+        .section-title {
+            margin-top: 50px;
+            margin-bottom: 30px;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .component-demo {
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .code-snippet {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mt-5 mb-4">🎨 Bootstrap Components Showcase</h1>
+        <p class="lead text-center mb-5">Explore Bootstrap's powerful pre-built components</p>
+
+        <!-- BUTTONS SECTION -->
+        <div class="section-title">
+            <h2><i class="bi bi-hand-index"></i> Buttons</h2>
+        </div>
+        
+        <div class="component-demo">
+            <h4>Color Variants</h4>
+            <p>Bootstrap provides semantic color classes for buttons:</p>
+            <button type="button" class="btn btn-primary">Primary</button>
+            <button type="button" class="btn btn-secondary">Secondary</button>
+            <button type="button" class="btn btn-success">Success</button>
+            <button type="button" class="btn btn-danger">Danger</button>
+            <button type="button" class="btn btn-warning">Warning</button>
+            <button type="button" class="btn btn-info">Info</button>
+            <button type="button" class="btn btn-light">Light</button>
+            <button type="button" class="btn btn-dark">Dark</button>
+            
+            <div class="code-snippet">
+&lt;button class="btn btn-primary"&gt;Primary&lt;/button&gt;
+&lt;button class="btn btn-success"&gt;Success&lt;/button&gt;
+&lt;button class="btn btn-danger"&gt;Danger&lt;/button&gt;
+            </div>
+        </div>
+
+        <div class="component-demo">
+            <h4>Outline Buttons</h4>
+            <button type="button" class="btn btn-outline-primary">Primary</button>
+            <button type="button" class="btn btn-outline-secondary">Secondary</button>
+            <button type="button" class="btn btn-outline-success">Success</button>
+            <button type="button" class="btn btn-outline-danger">Danger</button>
+            
+            <div class="code-snippet">
+&lt;button class="btn btn-outline-primary"&gt;Primary&lt;/button&gt;
+            </div>
+        </div>
+
+        <div class="component-demo">
+            <h4>Button Sizes</h4>
+            <button type="button" class="btn btn-primary btn-lg">Large Button</button>
+            <button type="button" class="btn btn-primary">Regular Button</button>
+            <button type="button" class="btn btn-primary btn-sm">Small Button</button>
+        </div>
+
+        <!-- ALERTS SECTION -->
+        <div class="section-title">
+            <h2><i class="bi bi-exclamation-triangle"></i> Alerts</h2>
+        </div>
+        
+        <div class="component-demo">
+            <div class="alert alert-primary" role="alert">
+                <strong>Primary alert!</strong> This is a primary alert with <a href="#" class="alert-link">a link</a>.
+            </div>
+            <div class="alert alert-success" role="alert">
+                <strong>Success!</strong> Your action was completed successfully.
+            </div>
+            <div class="alert alert-warning" role="alert">
+                <strong>Warning!</strong> Please review this important information.
+            </div>
+            <div class="alert alert-danger" role="alert">
+                <strong>Error!</strong> Something went wrong. Please try again.
+            </div>
+            
+            <div class="code-snippet">
+&lt;div class="alert alert-success" role="alert"&gt;
+    Success message here!
+&lt;/div&gt;
+            </div>
+        </div>
+
+        <!-- BADGES SECTION -->
+        <div class="section-title">
+            <h2><i class="bi bi-tags"></i> Badges</h2>
+        </div>
+        
+        <div class="component-demo">
+            <h1>Heading <span class="badge bg-primary">New</span></h1>
+            <h2>Heading <span class="badge bg-secondary">Hot</span></h2>
+            <button type="button" class="btn btn-primary">
+                Notifications <span class="badge bg-danger">99+</span>
+            </button>
+            <button type="button" class="btn btn-dark">
+                Messages <span class="badge bg-light text-dark">4</span>
+            </button>
+        </div>
+
+        <!-- CARDS SECTION -->
+        <div class="section-title">
+            <h2><i class="bi bi-card-heading"></i> Cards</h2>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400" class="card-img-top" alt="Mountain">
+                    <div class="card-body">
+                        <h5 class="card-title">Mountain Adventure</h5>
+                        <p class="card-text">Explore breathtaking mountain landscapes and outdoor adventures.</p>
+                        <a href="#" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400" class="card-img-top" alt="Nature">
+                    <div class="card-body">
+                        <h5 class="card-title">Nature Photography</h5>
+                        <p class="card-text">Capture the beauty of nature through stunning photography.</p>
+                        <a href="#" class="btn btn-success">View Gallery</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=400" class="card-img-top" alt="Beach">
+                    <div class="card-body">
+                        <h5 class="card-title">Beach Paradise</h5>
+                        <p class="card-text">Relax on pristine beaches and enjoy tropical destinations.</p>
+                        <a href="#" class="btn btn-info">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BREADCRUMB SECTION -->
+        <div class="section-title">
+            <h2><i class="bi bi-signpost"></i> Breadcrumbs</h2>
+        </div>
+        
+        <div class="component-demo">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Library</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Data</li>
+                </ol>
+            </nav>
+        </div>
+
+        <!-- PROGRESS BARS SECTION -->
+        <div class="section-title">
+            <h2><i class="bi bi-bar-chart"></i> Progress Bars</h2>
+        </div>
+        
+        <div class="component-demo">
+            <div class="progress mb-3">
+                <div class="progress-bar" role="progressbar" style="width: 25%">25%</div>
+            </div>
+            <div class="progress mb-3">
+                <div class="progress-bar bg-success" role="progressbar" style="width: 50%">50%</div>
+            </div>
+            <div class="progress mb-3">
+                <div class="progress-bar bg-warning" role="progressbar" style="width: 75%">75%</div>
+            </div>
+            <div class="progress mb-3">
+                <div class="progress-bar bg-danger" role="progressbar" style="width: 100%">100%</div>
+            </div>
+        </div>
+
+        <!-- SPINNERS SECTION -->
+        <div class="section-title">
+            <h2><i class="bi bi-arrow-repeat"></i> Spinners</h2>
+        </div>
+        
+        <div class="component-demo">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-border text-success" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-border text-danger" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow text-success" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow text-danger" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+
+        <!-- ACCORDION SECTION -->
+        <div class="section-title">
+            <h2><i class="bi bi-list-ul"></i> Accordion</h2>
+        </div>
+        
+        <div class="component-demo">
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                            What is Bootstrap?
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Bootstrap is a popular CSS framework for building responsive, mobile-first websites quickly.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                            Why use Bootstrap?
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Bootstrap provides pre-built components, responsive grid system, and consistent design patterns.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                            How to get started?
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Include Bootstrap CSS and JS via CDN, then start adding Bootstrap classes to your HTML elements.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGINATION SECTION -->
+        <div class="section-title">
+            <h2><i class="bi bi-three-dots"></i> Pagination</h2>
+        </div>
+        
+        <div class="component-demo">
+            <nav>
+                <ul class="pagination">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1">Previous</a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- TOOLTIPS AND POPOVERS -->
+        <div class="section-title">
+            <h2><i class="bi bi-chat-square-text"></i> Tooltips & Popovers</h2>
+        </div>
+        
+        <div class="component-demo">
+            <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">
+                Tooltip on top
+            </button>
+            <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="right" title="Tooltip on right">
+                Tooltip on right
+            </button>
+            <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Tooltip on bottom">
+                Tooltip on bottom
+            </button>
+            <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="left" title="Tooltip on left">
+                Tooltip on left
+            </button>
+        </div>
+
+        <div class="alert alert-success mt-5">
+            <h4 class="alert-heading">🎉 Congratulations!</h4>
+            <p>You've explored the major Bootstrap components. These building blocks can be combined to create professional websites quickly.</p>
+            <hr>
+            <p class="mb-0">Check out the <strong>Complete Website Example</strong> to see all these components in action!</p>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Initialize tooltips
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    </script>
+</body>
+</html>
