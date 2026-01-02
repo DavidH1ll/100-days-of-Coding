@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Secrets App{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card p-5 text-center">
+                <h1 class="display-4 mb-4">🔐</h1>
+                <h2 class="mb-4">Welcome to Secrets</h2>
+                <p class="lead text-muted mb-4">
+                    This website holds some very special secrets. Only those with the right 
+                    credentials can access them.
+                </p>
+                <div class="d-grid gap-2">
+                    <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg">
+                        Login to View Secrets
+                    </a>
+                </div>
+                
+                <div class="mt-5 p-3 bg-light rounded">
+                    <h5 class="mb-3">🎯 What You'll Learn</h5>
+                    <ul class="list-unstyled text-start">
+                        <li class="mb-2">✅ Flask-WTF for advanced forms</li>
+                        <li class="mb-2">✅ Built-in form validation</li>
+                        <li class="mb-2">✅ CSRF protection</li>
+                        <li class="mb-2">✅ Email and password validators</li>
+                        <li class="mb-2">✅ Flash messages for feedback</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

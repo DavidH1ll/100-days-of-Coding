@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}{{ post.title }} - My Blog{% endblock %}
+
+{% block content %}
+<!-- Header -->
+<header class="page-header text-center">
+    <div class="container">
+        <h1 class="display-4 fw-bold">{{ post.title }}</h1>
+        <p class="lead">{{ post.subtitle }}</p>
+        <p class="text-light small">
+            Posted by {{ post.author }} on {{ post.date }}
+        </p>
+    </div>
+</header>
+
+<!-- Post Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <article>
+                <p class="lead">{{ post.body }}</p>
+                
+                <p>
+                    Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. 
+                    Vivamus suscipit tortor eget felis porttitor volutpat. Curabitur arcu erat, 
+                    accumsan id imperdiet et, porttitor at sem.
+                </p>
+                
+                <p>
+                    Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Nulla quis lorem 
+                    ut libero malesuada feugiat. Proin eget tortor risus. Donec sollicitudin molestie 
+                    malesuada.
+                </p>
+                
+                <p>
+                    Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Vestibulum 
+                    ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; 
+                    Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.
+                </p>
+                
+                <blockquote class="blockquote border-start border-5 border-primary ps-3 my-4">
+                    <p class="mb-0">
+                        "Placeholder quote that demonstrates the styling of blockquotes in this blog."
+                    </p>
+                </blockquote>
+                
+                <p>
+                    Sed porttitor lectus nibh. Cras ultricies ligula sed magna dictum porta. 
+                    Pellentesque in ipsum id orci porta dapibus. Vivamus magna justo, lacinia eget 
+                    consectetur sed, convallis at tellus.
+                </p>
+                
+                <p>
+                    Nulla porttitor accumsan tincidunt. Curabitur aliquet quam id dui posuere blandit. 
+                    Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
+                </p>
+            </article>
+            
+            <div class="mt-5">
+                <a href="{{ url_for('home') }}" class="btn btn-outline-primary">
+                    ← Back to Home
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

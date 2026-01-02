@@ -1,0 +1,40 @@
+{% include "header.html" %}
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('{{ post.img_url }}')">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-lg-8 mx-auto">
+                <div class="site-heading">
+                    <h1>{{ post.title }}</h1>
+                    <span class="subheading">{{ post.subtitle }}</span>
+                    <p class="post-meta" style="margin-top: 20px;">
+                        Posted by <strong>{{ post.author }}</strong> on {{ post.date }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-lg-8 mx-auto">
+                <!-- Blog post body - using safe filter to render HTML from CKEditor -->
+                {{ post.body|safe }}
+                
+                <hr>
+                
+                <!-- Edit Post Button -->
+                <div class="d-flex justify-content-center">
+                    <a class="btn btn-primary" href="{{ url_for('edit_post', post_id=post.id) }}">Edit Post</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+{% endblock %}

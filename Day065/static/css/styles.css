@@ -1,0 +1,505 @@
+/* ==============================================
+   DESIGN PRINCIPLES APPLIED:
+   1. COLOR THEORY: Green/Turquoise/Blue/White palette
+   2. TYPOGRAPHY: Serif (Playfair Display) for titles, Sans-serif (Poppins) for body
+   3. UI DESIGN: Geometric shapes, alignment, visual hierarchy
+   4. UX DESIGN: Smooth navigation, responsive layout, clear CTAs
+   ============================================== */
+
+/* RESET & BASE STYLES */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* COLOR PALETTE VARIABLES */
+:root {
+    --primary-turquoise: #1abc9c;
+    --primary-teal: #16a085;
+    --ocean-blue: #3498db;
+    --deep-blue: #2c3e50;
+    --white: #ffffff;
+    --light-gray: #ecf0f1;
+    --dark-gray: #555;
+    --gold-accent: #f39c12;
+}
+
+/* ==============================================
+   NAVIGATION BAR
+   ============================================== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+    background: transparent;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+    background: rgba(22, 160, 133, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 4px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    font-family: 'Poppins', sans-serif;
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--gold-accent);
+}
+
+/* ==============================================
+   SECTION 1: HERO / TITLE PAGE
+   ============================================== */
+.hero-section {
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient(135deg, var(--primary-turquoise), var(--ocean-blue));
+    background-image: 
+        linear-gradient(135deg, rgba(26, 188, 156, 0.8), rgba(52, 152, 219, 0.8)),
+        url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&w=1600');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+}
+
+/* Geometric Shapes - UI Design Element */
+.geometric-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    z-index: 1;
+}
+
+.geometric-square {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 500px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    z-index: 2;
+}
+
+/* Typography - Hierarchy Principle */
+.hero-text {
+    position: relative;
+    z-index: 3;
+}
+
+.hotel-name {
+    font-family: 'Playfair Display', serif; /* SERIF for authority/establishment */
+    font-size: 8rem;
+    font-weight: 700;
+    color: var(--deep-blue);
+    letter-spacing: 18px;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.hotel-tagline {
+    font-family: 'Poppins', sans-serif; /* SANS-SERIF for contrast */
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: var(--dark-gray);
+    letter-spacing: 4px;
+    text-transform: lowercase;
+}
+
+/* Scroll Down Indicator - UX Design */
+.scroll-down {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--white);
+    font-size: 2rem;
+    animation: bounce 2s infinite;
+    cursor: pointer;
+    z-index: 100;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    40% {
+        transform: translateX(-50%) translateY(-15px);
+    }
+    60% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+}
+
+/* ==============================================
+   SECTION 2: FEATURES PAGE
+   ============================================== */
+.features-section {
+    min-height: 100vh;
+    padding: 5rem 0;
+    background: var(--light-gray);
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+/* Layout - Alignment Principle */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4rem;
+    align-items: start;
+}
+
+.feature-item {
+    text-align: left;
+}
+
+/* Image Styling - UI Design with Geometric Frames */
+.feature-image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    margin-bottom: 2rem;
+}
+
+.circle-frame {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 110%;
+    height: 110%;
+    border-radius: 50%;
+    background: var(--primary-turquoise);
+    z-index: 0;
+}
+
+.feature-image {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+/* Typography - Visual Hierarchy */
+.feature-heading {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--deep-blue);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.feature-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--dark-gray);
+    line-height: 1.8;
+    letter-spacing: 0.5px;
+}
+
+/* ==============================================
+   SECTION 3: CONTACT PAGE
+   ============================================== */
+.contact-section {
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient(135deg, rgba(22, 160, 133, 0.85), rgba(52, 152, 219, 0.85)),
+                url('https://images.unsplash.com/photo-1550258987-190a2d41a8ba?q=80&w=1600');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+/* Geometric Shape: Hexagon - Modern UI Element */
+.geometric-hexagon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: rgba(255, 255, 255, 0.1);
+    clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+.contact-content {
+    position: relative;
+    z-index: 10;
+    text-align: right;
+    padding-right: 5%;
+}
+
+.contact-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 6rem;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 18px;
+    margin-bottom: 3rem;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: flex-end;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    color: var(--white);
+}
+
+.contact-item i {
+    font-size: 1.8rem;
+    color: var(--gold-accent);
+}
+
+.contact-item p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    text-align: right;
+}
+
+/* ==============================================
+   FOOTER
+   ============================================== */
+.footer {
+    background: var(--deep-blue);
+    color: var(--white);
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.footer i {
+    color: var(--gold-accent);
+}
+
+/* ==============================================
+   RESPONSIVE DESIGN - Mobile First Approach
+   ============================================== */
+@media (max-width: 1200px) {
+    .hotel-name {
+        font-size: 6rem;
+        letter-spacing: 12px;
+    }
+    
+    .geometric-circle,
+    .geometric-square {
+        width: 500px;
+        height: 500px;
+    }
+}
+
+@media (max-width: 992px) {
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 5rem;
+    }
+    
+    .nav-links {
+        gap: 1rem;
+    }
+    
+    .hotel-name {
+        font-size: 5rem;
+        letter-spacing: 8px;
+    }
+    
+    .contact-heading {
+        font-size: 4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1rem 3%;
+    }
+    
+    .nav-brand {
+        font-size: 1.2rem;
+        letter-spacing: 2px;
+    }
+    
+    .nav-links a {
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+    }
+    
+    .hotel-name {
+        font-size: 3.5rem;
+        letter-spacing: 6px;
+    }
+    
+    .hotel-tagline {
+        font-size: 1.2rem;
+        letter-spacing: 2px;
+    }
+    
+    .geometric-circle,
+    .geometric-square {
+        width: 350px;
+        height: 350px;
+    }
+    
+    .feature-heading {
+        font-size: 1.5rem;
+    }
+    
+    .feature-text {
+        font-size: 0.95rem;
+    }
+    
+    .contact-heading {
+        font-size: 3rem;
+        letter-spacing: 12px;
+    }
+    
+    .contact-item p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hotel-name {
+        font-size: 2.5rem;
+        letter-spacing: 4px;
+    }
+    
+    .hotel-tagline {
+        font-size: 1rem;
+        letter-spacing: 1px;
+    }
+    
+    .geometric-circle,
+    .geometric-square {
+        width: 280px;
+        height: 280px;
+    }
+    
+    .contact-heading {
+        font-size: 2.5rem;
+        letter-spacing: 8px;
+    }
+    
+    .nav-links {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+/* ==============================================
+   ACCESSIBILITY & PRINT STYLES
+   ============================================== */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* Focus states for keyboard navigation */
+a:focus,
+button:focus {
+    outline: 3px solid var(--gold-accent);
+    outline-offset: 3px;
+}
