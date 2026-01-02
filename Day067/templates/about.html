@@ -1,0 +1,33 @@
+{% include "header.html" %}
+{% block title %}About{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=1600')">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-lg-8 mx-auto">
+                <div class="site-heading">
+                    <h1>About Me</h1>
+                    <span class="subheading">This is what I do.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 col-lg-8 mx-auto">
+            <p>Hello! I'm Angela, a passionate blogger who loves to share thoughts and experiences about technology, life, and everything in between.</p>
+            
+            <p>This blog is built with Flask, a powerful Python web framework, and demonstrates full CRUD (Create, Read, Update, Delete) functionality. Every post you see here is stored in a SQLite database and can be created, edited, or deleted through the web interface.</p>
+            
+            <p>The rich text editing is powered by CKEditor, allowing for beautiful formatting and styling of blog posts. Bootstrap provides the sleek, responsive design you see across the site.</p>
+            
+            <p>Feel free to explore the blog, read the posts, and see how modern web development combines backend logic with elegant frontend design!</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

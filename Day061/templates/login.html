@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}Login - Secrets App{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card p-4">
+                <div class="card-body">
+                    <h2 class="text-center mb-4">🔑 Login</h2>
+                    <p class="text-muted text-center mb-4">Enter your credentials to access the secrets</p>
+                    
+                    <!-- Flask-WTF Form -->
+                    <form method="POST" action="{{ url_for('login') }}" novalidate>
+                        {{ form.hidden_tag() }}  {# CSRF Token #}
+                        
+                        <!-- Email Field -->
+                        <div class="mb-3">
+                            {{ form.email.label(class="form-label") }}
+                            {{ form.email(class="form-control" + (" is-invalid" if form.email.errors else ""), 
+                                         placeholder="Enter your email") }}
+                            {% if form.email.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in form.email.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <!-- Password Field -->
+                        <div class="mb-3">
+                            {{ form.password.label(class="form-label") }}
+                            {{ form.password(class="form-control" + (" is-invalid" if form.password.errors else ""), 
+                                            placeholder="Enter your password") }}
+                            {% if form.password.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in form.password.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <!-- Submit Button -->
+                        <div class="d-grid">
+                            {{ form.submit(class="btn btn-primary btn-lg") }}
+                        </div>
+                    </form>
+                    
+                    <hr class="my-4">
+                    
+                    <!-- Test Credentials Info -->
+                    <div class="alert alert-info mb-0">
+                        <h6 class="alert-heading">📝 Test Credentials:</h6>
+                        <p class="mb-1"><strong>Email:</strong> admin@email.com</p>
+                        <p class="mb-0"><strong>Password:</strong> 12345678</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

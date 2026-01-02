@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Contact - My Blog{% endblock %}
+
+{% block content %}
+<!-- Header -->
+<header class="page-header text-center">
+    <div class="container">
+        <h1 class="display-3 fw-bold">Contact Me</h1>
+        <p class="lead">Have questions? I have answers.</p>
+    </div>
+</header>
+
+<!-- Contact Form -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            {% if msg_sent %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <h4 class="alert-heading">Successfully sent your message!</h4>
+                <p>Thank you for contacting me. I'll get back to you as soon as possible.</p>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {% endif %}
+            
+            <p class="mb-4">
+                Want to get in touch? Fill out the form below to send me a message and I will 
+                get back to you as soon as possible!
+            </p>
+            
+            <form method="POST" action="{{ url_for('contact') }}">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" 
+                           placeholder="Enter your name" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input type="email" class="form-control" id="email" name="email" 
+                           placeholder="Enter your email" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Phone Number</label>
+                    <input type="tel" class="form-control" id="phone" name="phone" 
+                           placeholder="Enter your phone number" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea class="form-control" id="message" name="message" rows="6" 
+                              placeholder="Enter your message" required></textarea>
+                </div>
+                
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary btn-lg">Send Message</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top 10 Movies</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Koulen&family=Lato&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    <style>
+        *, *:before, *:after {
+            box-sizing: border-box;
+        }
+        
+        html {
+            font-size: 18px;
+        }
+        
+        body {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Lato', sans-serif;
+            color: #2b2b2b;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+        }
+        
+        .heading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+        
+        .heading h1 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 4rem;
+            margin: 0 1rem 0 0;
+            color: #fff;
+            text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
+        }
+        
+        .add-btn {
+            display: inline-block;
+            background: #fff;
+            color: #667eea;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .add-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .card {
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .card .front {
+            position: relative;
+            padding-bottom: 150%;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .card .front .top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        
+        .card .number {
+            font-family: 'Koulen', cursive;
+            font-size: 8rem;
+            color: #fff;
+            text-shadow: 4px 4px 0 rgba(0, 0, 0, 0.5);
+            line-height: 1;
+            margin: 0;
+        }
+        
+        .card .delete-btn {
+            background: rgba(255, 59, 48, 0.9);
+            color: #fff;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .card .delete-btn:hover {
+            background: rgb(255, 59, 48);
+            transform: scale(1.1);
+        }
+        
+        .card .front .bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+        }
+        
+        .card .title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2rem;
+            color: #fff;
+            margin: 0 0 0.3rem 0;
+            text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+        }
+        
+        .card .rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .card .rating i {
+            color: #ffd700;
+            font-size: 1.2rem;
+        }
+        
+        .card .rating span {
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+        
+        .card .back {
+            padding: 1.5rem;
+            background: #fff;
+        }
+        
+        .card .description {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            color: #555;
+        }
+        
+        .card .review {
+            font-style: italic;
+            color: #667eea;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 5px;
+        }
+        
+        .card .edit-btn {
+            display: inline-block;
+            background: #667eea;
+            color: #fff;
+            text-decoration: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .card .edit-btn:hover {
+            background: #764ba2;
+            transform: scale(1.05);
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .empty-state i {
+            font-size: 5rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+        
+        .empty-state h2 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2.5rem;
+            color: #2b2b2b;
+            margin-bottom: 0.5rem;
+        }
+        
+        .empty-state p {
+            color: #666;
+            font-size: 1.2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .heading h1 {
+                font-size: 2.5rem;
+            }
+            
+            .card-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="heading">
+            <h1>My Top 10 Movies</h1>
+            <a class="add-btn" href="{{ url_for('add_movie') }}">Add Movie</a>
+        </div>
+        
+        {% if movies|length == 0 %}
+        <div class="empty-state">
+            <i class="fas fa-film"></i>
+            <h2>No Movies Yet</h2>
+            <p>Start building your top 10 list by adding your first movie!</p>
+        </div>
+        {% else %}
+        <div class="card-container">
+            {% for movie in movies %}
+            <div class="card">
+                <div class="front" style="background-image: url('{{ movie.img_url }}');">
+                    <div class="top">
+                        <h3 class="number">{{ movie.ranking }}</h3>
+                        <a href="{{ url_for('delete_movie', id=movie.id) }}" class="delete-btn">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </div>
+                    <div class="bottom">
+                        <h3 class="title">{{ movie.title }}</h3>
+                        <p class="rating">
+                            <i class="fas fa-star"></i>
+                            <span>{{ movie.rating }}/10</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="back">
+                    <p class="description">{{ movie.description }}</p>
+                    {% if movie.review %}
+                    <p class="review">"{{ movie.review }}"</p>
+                    {% endif %}
+                    <a href="{{ url_for('edit_rating', id=movie.id) }}" class="edit-btn">
+                        Update Rating
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Hotel - Lose Yourself to Find Yourself</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+        <div class="nav-brand">A HOTEL</div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#features">Features</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- SECTION 1: HERO / TITLE PAGE -->
+    <section id="home" class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <!-- Geometric Shape: Circle -->
+            <div class="geometric-circle"></div>
+            
+            <!-- Geometric Shape: Square Frame -->
+            <div class="geometric-square"></div>
+            
+            <!-- Hotel Title -->
+            <div class="hero-text">
+                <h1 class="hotel-name">A HOTEL</h1>
+                <p class="hotel-tagline">Lose yourself to find yourself</p>
+            </div>
+        </div>
+        
+        <!-- Scroll Down Indicator -->
+        <div class="scroll-down">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- SECTION 2: FEATURES PAGE -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <div class="features-grid">
+                <!-- Feature 1: Beautiful Rooms -->
+                <div class="feature-item">
+                    <div class="feature-image-wrapper">
+                        <div class="circle-frame"></div>
+                        <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=800&h=800&fit=crop" 
+                             alt="Luxurious hotel bedroom" 
+                             class="feature-image">
+                    </div>
+                    <h2 class="feature-heading">Beautiful Rooms</h2>
+                    <p class="feature-text">
+                        Experience unparalleled comfort in our thoughtfully designed rooms. 
+                        Each space combines modern elegance with timeless luxury, creating 
+                        a sanctuary where every detail is crafted for your peace and relaxation.
+                    </p>
+                </div>
+
+                <!-- Feature 2: Beautiful Food -->
+                <div class="feature-item">
+                    <div class="feature-image-wrapper">
+                        <div class="circle-frame"></div>
+                        <img src="https://images.unsplash.com/photo-1567137098126-5a6be6d48c44?w=800&h=800&fit=crop" 
+                             alt="Gourmet breakfast spread" 
+                             class="feature-image">
+                    </div>
+                    <h2 class="feature-heading">Beautiful Food</h2>
+                    <p class="feature-text">
+                        Savor culinary excellence with our expertly crafted menu. From sunrise 
+                        breakfast to candlelit dinners, our chefs create memorable dining 
+                        experiences using the finest ingredients and innovative techniques.
+                    </p>
+                </div>
+
+                <!-- Feature 3: Beautiful Pool -->
+                <div class="feature-item">
+                    <div class="feature-image-wrapper">
+                        <div class="circle-frame"></div>
+                        <img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=800&h=800&fit=crop" 
+                             alt="Infinity pool with ocean view" 
+                             class="feature-image">
+                    </div>
+                    <h2 class="feature-heading">Beautiful Pool</h2>
+                    <p class="feature-text">
+                        Immerse yourself in tranquility at our stunning infinity pool. 
+                        Surrounded by tropical gardens and offering breathtaking views, 
+                        it's the perfect escape to refresh your body and rejuvenate your spirit.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: CONTACT PAGE -->
+    <section id="contact" class="contact-section">
+        <div class="contact-overlay"></div>
+        
+        <!-- Geometric Shape: Hexagon -->
+        <div class="geometric-hexagon"></div>
+        
+        <div class="contact-content">
+            <h2 class="contact-heading">STAY</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>123 Paradise Beach Road<br>
+                       Tropical Island, TI 12345</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <p>reservations@ahotel.com</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <p>+1 (555) 123-4567</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>&copy; 2026 A Hotel. All rights reserved. | Designed with <i class="fas fa-heart"></i></p>
+    </footer>
+
+    <!-- Smooth Scroll Script -->
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Animate scroll indicator
+        const scrollDown = document.querySelector('.scroll-down');
+        if (scrollDown) {
+            setInterval(() => {
+                scrollDown.style.animation = 'none';
+                setTimeout(() => {
+                    scrollDown.style.animation = 'bounce 2s infinite';
+                }, 10);
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
