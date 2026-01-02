@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Home - My Blog{% endblock %}
+
+{% block content %}
+<!-- Header -->
+<header class="page-header text-center">
+    <div class="container">
+        <h1 class="display-3 fw-bold">Welcome to My Blog</h1>
+        <p class="lead">A collection of random musings</p>
+    </div>
+</header>
+
+<!-- Blog Posts -->
+<div class="container">
+    {% for post in posts %}
+    <div class="row mb-5">
+        <div class="col-lg-8 mx-auto">
+            <h2 class="mb-3">
+                <a href="{{ url_for('post', post_id=post.id) }}" class="text-decoration-none text-dark">
+                    {{ post.title }}
+                </a>
+            </h2>
+            <h3 class="text-muted mb-3" style="font-size: 1.2rem;">{{ post.subtitle }}</h3>
+            <p class="text-muted small mb-4">
+                Posted by {{ post.author }} on {{ post.date }}
+            </p>
+            <hr>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
