@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% from 'bootstrap5/form.html' import render_form %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+<header class="masthead" style="background-image: url('{{ post.img_url }}'); background-size: cover; background-position: center; padding: 200px 0 150px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="post-heading text-white">
+                    <h1>{{ post.title }}</h1>
+                    <h2 class="subheading">{{ post.subtitle }}</h2>
+                    <span class="meta">Posted by 
+                        <a href="#" class="text-white">{{ post.author.name }}</a>
+                        on {{ post.date }}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                {{ post.body|safe }}
+                
+                {% if current_user.id == 1 %}
+                <div class="d-flex gap-3 my-3">
+                    <a class="btn btn-primary" href="{{ url_for('edit_post', post_id=post.id) }}">Edit Post</a>
+                    <a class="btn btn-danger" href="{{ url_for('delete_post', post_id=post.id) }}">Delete Post</a>
+                </div>
+                {% endif %}
+                
+                <hr>
+                
+                <!-- Comments Section -->
+                <div class="comment-section">
+                    <h3>Comments</h3>
+                    
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <p class="flash text-danger">{{ message }}</p>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                    
+                    <!-- Comment Form -->
+                    <div class="my-4">
+                        {{ render_form(form, button_map={"submit": "primary"}) }}
+                    </div>
+                    
+                    <!-- Display Comments -->
+                    {% for comment in post.comments %}
+                    <div class="comment d-flex mb-4">
+                        <div class="me-3">
+                            <img src="{{ comment.comment_author.email | gravatar }}" alt="Avatar" class="rounded-circle">
+                        </div>
+                        <div>
+                            <h5>{{ comment.comment_author.name }}</h5>
+                            <div>{{ comment.text|safe }}</div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+{% endblock %}
