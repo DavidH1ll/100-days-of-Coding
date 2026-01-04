@@ -2,15 +2,16 @@ from flask import Flask, render_template, redirect, url_for, flash
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, EmailField
 from wtforms.validators import DataRequired, Email, Length
+import os
 
 app = Flask(__name__)
 
-# Secret key for CSRF protection
-app.config['SECRET_KEY'] = 'any-secret-key-you-choose'
+# Secret key for CSRF protection - Load from environment
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'dev-key-change-in-production')
 
 # Correct credentials (in a real app, use a database with hashed passwords)
-CORRECT_EMAIL = "admin@email.com"
-CORRECT_PASSWORD = "12345678"
+CORRECT_EMAIL = os.environ.get('ADMIN_EMAIL', 'admin@email.com')
+CORRECT_PASSWORD = os.environ.get('ADMIN_PASSWORD', '12345678')
 
 
 class LoginForm(FlaskForm):
