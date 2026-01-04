@@ -19,6 +19,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from sqlalchemy import Integer, String, Boolean
 import random
+import os
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -31,8 +32,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///cafes.db'
 db = SQLAlchemy(model_class=Base)
 db.init_app(app)
 
-# API Key for secured endpoints
-API_KEY = "TopSecretAPIKey"
+# API Key for secured endpoints - Load from environment
+API_KEY = os.environ.get('API_KEY', 'TopSecretAPIKey')
 
 
 # ==================== DATABASE MODEL ====================
