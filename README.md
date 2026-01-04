@@ -1,8 +1,9 @@
 # 100 Days of Coding (Python)
 
 ![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)
-![Progress](https://img.shields.io/badge/Progress-56%2F100-brightgreen.svg)
+![Progress](https://img.shields.io/badge/Progress-70%2F100-brightgreen.svg)
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Code Style](https://img.shields.io/badge/code%20style-PEP%208-blue.svg)
 
 A curated, day-by-day journey to practice and level up Python skills through small projects and focused exercises.
 
@@ -26,60 +27,78 @@ This repository documents progress across 100 days of Python. Topics range from 
 
 ## Progress Tracker
 
-**✅ Days 1-56 Complete** | 🔄 Days 57-100 In Progress
+**✅ Days 1-70 Complete** | 🔄 Days 71-100 In Progress
 
 ### Completed Milestones
 - ✅ **Days 1-10**: Python Fundamentals (variables, control flow, functions, dictionaries)
 - ✅ **Days 11-20**: Intermediate Concepts (OOP, turtle graphics, file handling)
-- ✅ **Days 21-30**: Advanced Projects (games, data processing, APIs)
-- ✅ **Days 31-36**: Automation & APIs (email, weather, stock monitoring)
-- ✅ **Days 37-40**: Python APIs & Email Automation (Pixela, Exercise Tracker, Flight Finder, Flight Club)
+- ✅ **Days 21-30**: Advanced Projects (games, data processing, password manager GUI)
+- ✅ **Days 31-40**: Automation & APIs (email, weather, stock monitoring, flight finder)
 - ✅ **Days 41-42**: HTML & CSS Fundamentals (Movie Ranking, Birthday Invite)
 - ✅ **Days 43-56**: Web Development with Flask (templates, static files, routing)
+- ✅ **Days 57-61**: Flask Templating & Forms (Jinja2, WTForms, validation)
+- ✅ **Days 62-66**: Flask with Databases (SQLAlchemy, CRUD operations, REST APIs)
+- ✅ **Days 67-70**: Advanced Flask (authentication, blog system, CKEditor)
 
 ## Featured Projects
 
 | Day | Project | Technologies | Description |
 |-----|---------|--------------|-------------|
-| **Day 56** | 💼 Personal Name Card | Flask, HTML, CSS, Jinja2 | Modern web-based business card with routing and static files |
-| **Day 42** | 🎉 Birthday Invite Website | HTML, Images, Lists, Links | Interactive birthday party invitation with venue map and gift list |
-| **Day 41** | 🎬 Movie Ranking Website | HTML, CSS, Semantic Structure | Personal movie review website with rankings and descriptions |
-| **Day 40** | ✈️ Flight Club (Productized) | Tequila API, Sheety, SMTP, Customer Signup | Complete flight deal finder with user management and email notifications |
-| **Day 36** | 📈 Stock News Monitor | Alpha Vantage API, NewsAPI, Twilio | Tracks stock price changes and sends news alerts via SMS/Email |
-| **Day 35** | 🌦️ Weather Alert System | OpenWeatherMap API | Analyzes 12-hour forecast and sends precipitation alerts |
-| **Day 34** | 🧠 Quizzler App | Tkinter, Open Trivia API | Interactive quiz application with GUI |
-| **Day 33** | 🛰️ ISS Tracker | Open Notify API, Sunrise-Sunset API | Notifies when ISS passes overhead at night |
-| **Day 32** | 🎂 Birthday Email Automation | SMTP, CSV | Sends personalized birthday emails automatically |
+| **Day 69** | 📝 RESTful Blog with Users | Flask, SQLAlchemy, Flask-Login, CKEditor | Full-featured blog with user authentication and rich text editing |
+| **Day 68** | 🔐 Flask Authentication | Flask-Login, Werkzeug Security | Secure user registration and login with password hashing |
+| **Day 67** | 📰 Blog with CRUD | Flask, SQLAlchemy, CKEditor, Bootstrap | Complete blog system with create, read, update, delete operations |
+| **Day 66** | ☕ Cafe REST API | Flask, SQLAlchemy, REST | RESTful API for cafe database with full CRUD operations |
+| **Day 64** | 🎬 Top Movies Website | Flask, SQLAlchemy, WTForms, Movie Database API | Movie ranking app with database and external API integration |
+| **Day 63** | 📚 Virtual Bookshelf | Flask, SQLAlchemy, SQLite | Library management system with database operations |
+| **Day 53** | 🏠 Data Entry Automation | Selenium, BeautifulSoup, Google Forms | Web scraping and automated form submission |
+| **Day 46** | 🎵 Musical Time Machine | Spotify API, BeautifulSoup | Create Spotify playlists from historical Billboard charts |
+| **Day 40** | ✈️ Flight Club | Tequila API, Sheety, SMTP | Flight deal finder with user management and email notifications |
+| **Day 36** | 📈 Stock News Monitor | Alpha Vantage API, NewsAPI, Twilio | Stock price tracker with news alerts via SMS/Email |
+| **Day 29** | 🔑 Password Manager (MyPass) | Tkinter, JSON | GUI password manager with password generation |
 
 ## Repository Structure
 
-The top-level folders follow the pattern `DayXXX/` (e.g., `Day001/`, `Day032/`, `Day033/`). Inside each folder you'll typically find a `main.py` and additional modules, data files, or assets relevant to that day's challenge.
+The repository follows a consistent structure with standardized naming conventions:
 
-Example (partial):
+```
+100-days-of-coding/
+├── DayXXX/              # Day folders (001-070)
+│   ├── main.py         # Primary script (snake_case naming)
+│   ├── README.md       # Project documentation
+│   ├── requirements.txt # Python dependencies
+│   ├── .env.example    # Environment variable template
+│   └── ...             # Additional modules and assets
+├── .gitignore          # Excludes .env files and sensitive data
+├── requirements.txt    # Global dependencies
+└── README.md           # This file
+```
 
-- `Day001/` – Basics and simple scripts
-- `Day015/` – Coffee machine simulation (procedural vs OOP)
-- `Day020/` – Snake game (turtle graphics)
-- `Day025/` – Working with CSV data and Pandas
-- `Day032/` – Automated Birthday Email Sender
-- `Day033/` – ISS Overhead Email Notifier (APIs)
+**Recent Improvements:**
+- ✅ All Python files follow PEP 8 snake_case naming
+- ✅ Every project has a README.md with documentation
+- ✅ All projects with dependencies include requirements.txt
+- ✅ Projects using secrets include .env.example templates
+- ✅ Hardcoded API keys moved to environment variables
 
 ## Highlights
 
 Key areas covered across the days:
 
-- **Core Python**: data types, control flow, functions, OOP
-- **Scripting & Automation**: email automation, scheduled tasks
-- **File Handling**: CSV/JSON data, file I/O operations
-- **Web Scraping**: Requests, BeautifulSoup, Selenium
-- **APIs & HTTP**: REST APIs, API authentication, JSON parsing
+- **Core Python**: Data types, control flow, functions, OOP, decorators
+- **Scripting & Automation**: Email automation, web scraping, scheduled tasks
+- **File Handling**: CSV/JSON data, file I/O operations, data persistence
+- **Web Scraping**: Requests, BeautifulSoup, Selenium automation
+- **APIs & HTTP**: REST APIs, API authentication, JSON parsing, creating APIs
 - **Data Science**: Pandas, NumPy, Matplotlib, Seaborn, Plotly
-- **Games & Graphics**: Turtle graphics, game development
-- **GUI Development**: Tkinter applications
-- **Web Backends**: Flask, authentication, forms
-- **Databases**: SQLite, PostgreSQL, SQL
-- **Development Tools**: Git/GitHub, CLI, virtual environments
-- **Deployment**: Heroku/Gunicorn, HTML/CSS/Bootstrap
+- **Games & Graphics**: Turtle graphics, Pong, Snake, Breakout
+- **GUI Development**: Tkinter applications, password managers
+- **Web Development**: Flask, Jinja2 templating, routing, static files
+- **Forms & Validation**: WTForms, Flask-WTF, form validation, CSRF protection
+- **Databases**: SQLAlchemy, SQLite, CRUD operations, relationships
+- **Authentication**: Flask-Login, password hashing, user sessions
+- **Security**: Environment variables, .env files, secret management
+- **Development Tools**: Git/GitHub, CLI, virtual environments, code style
+- **HTML/CSS**: Bootstrap, responsive design, semantic HTML
 
 ## Installation
 
@@ -109,20 +128,28 @@ Key areas covered across the days:
    ```
 
 3. **Install dependencies**
+   
+   For all projects:
    ```bash
    pip install -r requirements.txt
    ```
    
-   For selective installation:
+   For individual projects (each Day folder has its own requirements.txt):
    ```bash
-   # Core dependencies only (recommended for API projects)
-   pip install requests python-dotenv
+   cd Day066
+   pip install -r requirements.txt
+   ```
    
-   # Data science stack
+   Selective installation by category:
+   ```bash
+   # API & Web projects (Days 32-40, 45-51)
+   pip install requests python-dotenv beautifulsoup4 selenium
+   
+   # Flask projects (Days 54-69)
+   pip install Flask Flask-SQLAlchemy Flask-WTF Flask-Login
+   
+   # Data science projects (Days 25-26)
    pip install pandas numpy matplotlib
-   
-   # Web scraping
-   pip install beautifulsoup4 selenium
    ```
 
 ## API Keys Setup
@@ -138,24 +165,40 @@ Several projects require API keys. **Never commit your API keys to Git!**
 | Day 34 - Quizzler | Open Trivia DB (free, no key) | - |
 | Day 35 - Weather Alert | OpenWeatherMap | [Sign up](https://openweathermap.org/api) |
 | Day 36 - Stock Monitor | Alpha Vantage, NewsAPI, Twilio (optional) | [Alpha Vantage](https://www.alphavantage.co/), [NewsAPI](https://newsapi.org/), [Twilio](https://www.twilio.com/) |
+| Day 40 - Flight Club | Tequila API, Sheety | [Tequila](https://tequila.kiwi.com/), [Sheety](https://sheety.co/) |
+| Day 46 - Spotify Playlists | Spotify API | [Spotify for Developers](https://developer.spotify.com/) |
+| Day 64 - Movie Database | The Movie Database (TMDB) | [TMDB](https://www.themoviedb.org/settings/api) |
 
 ### Environment Variables
 
+Projects using environment variables include `.env.example` templates:
+
 1. Copy the `.env.example` file in each project directory:
-   ```powershell
+   ```bash
    # Example for Day 35
    cd Day035
    cp .env.example .env
    ```
 
-2. Edit `.env` with your API keys:
-   ```
-   OPENWEATHER_API_KEY=your_actual_key_here
-   LOCATION_LAT=40.7128
-   LOCATION_LON=-74.0060
+2. Edit `.env` with your actual credentials:
+   ```bash
+   # Day 35 - Weather Alert
+   WEATHER_API_KEY=your_actual_key_here
+   LAT=40.7128
+   LNG=-74.0060
+   
+   # Day 61 - Flask Authentication
+   SECRET_KEY=generate-a-secure-random-string
+   ADMIN_EMAIL=admin@email.com
+   ADMIN_PASSWORD=secure-password
    ```
 
-3. The `.env` file is protected by `.gitignore` and will not be committed.
+3. The `.env` file is automatically excluded by `.gitignore`
+
+**Projects with .env.example templates:**
+- Day 35, 36, 40 (API projects)
+- Day 46, 50, 51 (Web automation)
+- Day 60, 61, 66, 67, 68 (Flask apps)
 
 ## Running a Specific Day
 
