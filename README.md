@@ -115,7 +115,7 @@ Key areas covered across the days:
    cd 100-days-of-coding
    ```
 
-2. **Create a virtual environment**
+2. ***Create a virtual environment***
    ```powershell
    # Windows PowerShell
    python -m venv .venv

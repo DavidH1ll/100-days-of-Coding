@@ -1,0 +1,162 @@
+[33mcommit 91f8c9970d0d1508876d86b7dd9e7a1d400cf503[m
+Author: DavidH1ll <86690520+DavidH1ll@users.noreply.github.com>
+Date:   Sat Dec 13 20:52:32 2025 +0000
+
+    setup on linux
+
+[1mdiff --git a/.gitignore b/.gitignore[m
+[1mindex a9d2030..1a3aa86 100644[m
+[1m--- a/.gitignore[m
+[1m+++ b/.gitignore[m
+[36m@@ -1,93 +1,93 @@[m
+[31m-# Python[m
+[31m-__pycache__/[m
+[31m-*.py[cod][m
+[31m-*$py.class[m
+[31m-*.so[m
+[31m-.Python[m
+[31m-build/[m
+[31m-develop-eggs/[m
+[31m-dist/[m
+[31m-downloads/[m
+[31m-eggs/[m
+[31m-.eggs/[m
+[31m-lib/[m
+[31m-lib64/[m
+[31m-parts/[m
+[31m-sdist/[m
+[31m-var/[m
+[31m-wheels/[m
+[31m-pip-wheel-metadata/[m
+[31m-share/python-wheels/[m
+[31m-*.egg-info/[m
+[31m-.installed.cfg[m
+[31m-*.egg[m
+[31m-MANIFEST[m
+[31m-[m
+[31m-# Virtual Environment[m
+[31m-.venv/[m
+[31m-venv/[m
+[31m-ENV/[m
+[31m-env/[m
+[31m-.virtualenv/[m
+[31m-[m
+[31m-# Environment variables - CRITICAL: Contains API keys![m
+[31m-.env[m
+[31m-*.env[m
+[31m-!.env.example[m
+[31m-[m
+[31m-# IDE - VS Code[m
+[31m-.vscode/[m
+[31m-*.code-workspace[m
+[31m-[m
+[31m-# IDE - PyCharm[m
+[31m-.idea/[m
+[31m-*.iml[m
+[31m-*.iws[m
+[31m-out/[m
+[31m-[m
+[31m-# IDE - Other[m
+[31m-*.swp[m
+[31m-*.swo[m
+[31m-*.swn[m
+[31m-*~[m
+[31m-.project[m
+[31m-.pydevproject[m
+[31m-[m
+[31m-# OS Files[m
+[31m-.DS_Store[m
+[31m-.DS_Store?[m
+[31m-._*[m
+[31m-.Spotlight-V100[m
+[31m-.Trashes[m
+[31m-ehthumbs.db[m
+[31m-Thumbs.db[m
+[31m-Desktop.ini[m
+[31m-[m
+[31m-# Project Specific[m
+[31m-Output/[m
+[31m-output/[m
+[31m-*.log[m
+[31m-*.csv[m
+[31m-!birthdays.csv[m
+[31m-!50_states.csv[m
+[31m-!squirrel_count.csv[m
+[31m-!2018_Central_Park_Squirrel_Census_-_Squirrel_Data.csv[m
+[31m-!weather_data.csv[m
+[31m-!french_words.csv[m
+[31m-[m
+[31m-# Sensitive Data[m
+[31m-passwords.txt[m
+[31m-[m
+[31m-# Test Files[m
+[31m-test_*.py[m
+[31m-*_test.py[m
+[31m-.pytest_cache/[m
+[31m-.coverage[m
+[31m-htmlcov/[m
+[31m-[m
+[31m-# Documentation[m
+[31m-*.pdf[m
+[31m-*.doc[m
+[31m-*.docx[m
+[31m-[m
+[31m-# Jupyter Notebooks[m
+[32m+[m[32m# Python[m[41m[m
+[32m+[m[32m__pycache__/[m[41m[m
+[32m+[m[32m*.py[cod][m[41m[m
+[32m+[m[32m*$py.class[m[41m[m
+[32m+[m[32m*.so[m[41m[m
+[32m+[m[32m.Python[m[41m[m
+[32m+[m[32mbuild/[m[41m[m
+[32m+[m[32mdevelop-eggs/[m[41m[m
+[32m+[m[32mdist/[m[41m[m
+[32m+[m[32mdownloads/[m[41m[m
+[32m+[m[32meggs/[m[41m[m
+[32m+[m[32m.eggs/[m[41m[m
+[32m+[m[32mlib/[m[41m[m
+[32m+[m[32mlib64/[m[41m[m
+[32m+[m[32mparts/[m[41m[m
+[32m+[m[32msdist/[m[41m[m
+[32m+[m[32mvar/[m[41m[m
+[32m+[m[32mwheels/[m[41m[m
+[32m+[m[32mpip-wheel-metadata/[m[41m[m
+[32m+[m[32mshare/python-wheels/[m[41m[m
+[32m+[m[32m*.egg-info/[m[41m[m
+[32m+[m[32m.installed.cfg[m[41m[m
+[32m+[m[32m*.egg[m[41m[m
+[32m+[m[32mMANIFEST[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32m# Virtual Environment[m[41m[m
+[32m+[m[32m.venv/[m[41m[m
+[32m+[m[32mvenv/[m[41m[m
+[32m+[m[32mENV/[m[41m[m
+[32m+[m[32menv/[m[41m[m
+[32m+[m[32m.virtualenv/[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32m# Environment variables - CRITICAL: Contains API keys![m[41m[m
+[32m+[m[32m.env[m[41m[m
+[32m+[m[32m*.env[m[41m[m
+[32m+[m[32m!.env.example[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32m# IDE - VS Code[m[41m[m
+[32m+[m[32m.vscode/[m[41m[m
+[32m+[m[32m*.code-workspace[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32m# IDE - PyCharm[m[41m[m
+[32m+[m[32m.idea/[m[41m[m
+[32m+[m[32m*.iml[m[41m[m
+[32m+[m[32m*.iws[m[41m[m
+[32m+[m[32mout/[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32m# IDE - Other[m[41m[m
+[32m+[m[32m*.swp[m[41m[m
+[32m+[m[32m*.swo[m[41m[m
+[32m+[m[32m*.swn[m[41m[m
+[32m+[m[32m*~[m[41m[m
+[32m+[m[32m.project[m[41m[m
+[32m+[m[32m.pydevproject[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32m# OS Files[m[41m[m
+[32m+[m[32m.DS_Store[m[41m[m
+[
