@@ -45,7 +45,7 @@ This document summarizes all improvements made to prepare the "100 Days of Codin
 
 **Structure**: Categorized dependencies with comments
 - **Core** (all projects): `requests>=2.31.0`, `python-dotenv>=1.0.0`
-- **Web Scraping**: `beautifulsoup4>=4.12.0`, `selenium>=4.15.0`, `lxml>=4.9.0`
+- **Web Scraping**: `beautifulsoup4>=4.12.0`, `selenium>=4.15.0`, `lxml>=5.2.0`
 - **Data Science**: `pandas>=2.1.0`, `numpy>=1.24.0`, `matplotlib>=3.8.0`, `seaborn>=0.13.0`
 - **Web Development**: `flask>=3.0.0`, `gunicorn>=21.2.0`
 - **APIs**: `twilio>=8.10.0`
