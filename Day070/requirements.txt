@@ -1,0 +1,3 @@
+# Day 070 - Repository Maintenance & Security Hardening
+
+numpy>=1.24.0

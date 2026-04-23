@@ -90,4 +90,7 @@ htmlcov/
 *.doc
 *.docx
 
+# Stray/generated files
+er.name
+
 # Jupyter Notebooks

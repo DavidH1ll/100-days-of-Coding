@@ -1,0 +1,6 @@
+# Day 059 - Blog Refactoring (Advanced Flask Features)
+# Day 59 was a refactoring session on the Day 057 blog project.
+# The actual code lives in Day057/. Install these to run it.
+
+flask>=3.0.0
+requests>=2.31.0
