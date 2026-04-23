@@ -4,9 +4,11 @@ import requests
 
 app = Flask(__name__)
 
-# API endpoint for blog posts
-# TODO: Replace this with your own npoint.io endpoint
-# Example: https://api.npoint.io/674f5423f73deab1e9a7
+# API endpoint for blog posts.
+# This uses a shared demo endpoint. To use your own data:
+#   1. Go to https://www.npoint.io/ and create a free JSON bin
+#   2. Paste the contents of blog-posts.json into the bin
+#   3. Replace the URL below with your own bin URL
 BLOG_API_URL = "https://api.npoint.io/674f5423f73deab1e9a7"
 
 
