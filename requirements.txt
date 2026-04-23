@@ -1,8 +1,8 @@
 # 100 Days of Coding - Python Dependencies
 
 # Core dependencies used across multiple projects
-requests>=2.31.0
-python-dotenv>=1.0.0
+requests>=2.33.0
+python-dotenv>=1.2.2
 
 # Web Scraping (Day 024+)
 beautifulsoup4>=4.12.0
@@ -20,7 +20,7 @@ plotly>=5.14.0
 # tkinter is included with Python standard library
 
 # Web Development (Flask projects)
-flask>=3.0.0
+flask>=3.1.3
 flask-wtf>=1.2.0
 flask-bootstrap>=3.3.7
 wtforms>=3.0.0

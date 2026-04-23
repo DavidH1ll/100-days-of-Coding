@@ -2,5 +2,5 @@
 # Day 59 was a refactoring session on the Day 057 blog project.
 # The actual code lives in Day057/. Install these to run it.
 
-flask>=3.0.0
-requests>=2.31.0
+flask>=3.1.3
+requests>=2.33.0
