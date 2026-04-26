@@ -1,9 +1,12 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from sqlalchemy import Integer, String, Float
+from sqlalchemy.exc import IntegrityError
+import os
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'dev-fallback-key')
 
 # CREATE DATABASE
 class Base(DeclarativeBase):
@@ -40,15 +43,27 @@ def home():
 def add():
     if request.method == 'POST':
         # CREATE RECORD
-        new_book = Book(
-            title=request.form['title'],
-            author=request.form['author'],
-            rating=float(request.form['rating'])
-        )
-        db.session.add(new_book)
-        db.session.commit()
-        return redirect(url_for('home'))
-    
+        try:
+            title = request.form.get('title', '').strip()
+            author = request.form.get('author', '').strip()
+            rating = float(request.form['rating'])
+
+            if not title or not author:
+                flash("Title and author are required.")
+                return render_template('add.html'), 400
+
+            new_book = Book(title=title, author=author, rating=rating)
+            db.session.add(new_book)
+            db.session.commit()
+            return redirect(url_for('home'))
+        except (KeyError, ValueError):
+            flash("Invalid form data. Please fill all fields correctly.")
+            return render_template('add.html'), 400
+        except IntegrityError:
+            db.session.rollback()
+            flash("A book with that title already exists.")
+            return render_template('add.html'), 409
+
     return render_template('add.html')
 
 
@@ -56,12 +71,18 @@ def add():
 def edit():
     if request.method == 'POST':
         # UPDATE RECORD
-        book_id = request.form['id']
-        book_to_update = db.get_or_404(Book, book_id)
-        book_to_update.rating = float(request.form['rating'])
-        db.session.commit()
-        return redirect(url_for('home'))
-    
+        try:
+            book_id = request.form['id']
+            book_to_update = db.get_or_404(Book, book_id)
+            book_to_update.rating = float(request.form['rating'])
+            db.session.commit()
+            return redirect(url_for('home'))
+        except (KeyError, ValueError):
+            flash("Invalid rating value.")
+            book_id = request.form.get('id') or request.args.get('id')
+            book_selected = db.get_or_404(Book, book_id)
+            return render_template('edit.html', book=book_selected), 400
+
     # GET book by id from URL parameter
     book_id = request.args.get('id')
     book_selected = db.get_or_404(Book, book_id)
@@ -79,4 +100,4 @@ def delete():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=os.environ.get('FLASK_DEBUG', 'false').lower() == 'true')
