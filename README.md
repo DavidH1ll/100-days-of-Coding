@@ -1,7 +1,7 @@
 # 100 Days of Coding (Python)
 
 ![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)
-![Progress](https://img.shields.io/badge/Progress-70%2F100-brightgreen.svg)
+![Progress](https://img.shields.io/badge/Progress-100%2F100-brightgreen.svg)
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Code Style](https://img.shields.io/badge/code%20style-PEP%208-blue.svg)
 
@@ -27,23 +27,30 @@ This repository documents progress across 100 days of Python. Topics range from 
 
 ## Progress Tracker
 
-**✅ Days 1-70 Complete** | 🔄 Days 71-100 In Progress
+**✅ Days 1-100 Complete!** 🎉
 
 ### Completed Milestones
 - ✅ **Days 1-10**: Python Fundamentals (variables, control flow, functions, dictionaries)
 - ✅ **Days 11-20**: Intermediate Concepts (OOP, turtle graphics, file handling)
-- ✅ **Days 21-30**: Advanced Projects (games, data processing, password manager GUI)
+- ✅ **Days 21-30**: Advanced Projects (games, data processing, Tkinter GUI)
 - ✅ **Days 31-40**: Automation & APIs (email, weather, stock monitoring, flight finder)
 - ✅ **Days 41-42**: HTML & CSS Fundamentals (Movie Ranking, Birthday Invite)
 - ✅ **Days 43-56**: Web Development with Flask (templates, static files, routing)
 - ✅ **Days 57-61**: Flask Templating & Forms (Jinja2, WTForms, validation)
 - ✅ **Days 62-66**: Flask with Databases (SQLAlchemy, CRUD operations, REST APIs)
 - ✅ **Days 67-70**: Advanced Flask (authentication, blog system, CKEditor)
+- ✅ **Days 71-80**: Data Science (pandas, NumPy, matplotlib, seaborn, plotly, scipy, scikit-learn)
+- ✅ **Days 81-100**: Portfolio Projects (games, desktop apps, web apps, APIs, ML capstone)
 
 ## Featured Projects
 
 | Day | Project | Technologies | Description |
 |-----|---------|--------------|-------------|
+| **Day 100** | 💰 Earnings Predictor | scikit-learn, pandas, matplotlib | ML capstone: 5-model pipeline with hyperparameter tuning |
+| **Day 94** | 👾 Space Invaders | Python Turtle | Classic arcade game with aliens, shields, and level progression |
+| **Day 96** | 🛒 Online Shop | Flask, JavaScript, Bootstrap | E-commerce site with session cart and async checkout |
+| **Day 85** | 🖼️ Watermark App | Tkinter, Pillow | Desktop app for adding text/logo watermarks to images |
+| **Day 80** | 🏠 House Price Predictor | scikit-learn, pandas, seaborn | Linear Regression vs Random Forest on California housing |
 | **Day 69** | 📝 RESTful Blog with Users | Flask, SQLAlchemy, Flask-Login, CKEditor | Full-featured blog with user authentication and rich text editing |
 | **Day 68** | 🔐 Flask Authentication | Flask-Login, Werkzeug Security | Secure user registration and login with password hashing |
 | **Day 67** | 📰 Blog with CRUD | Flask, SQLAlchemy, CKEditor, Bootstrap | Complete blog system with create, read, update, delete operations |
@@ -62,7 +69,7 @@ The repository follows a consistent structure with standardized naming conventio
 
 ```
 100-days-of-coding/
-├── DayXXX/              # Day folders (001-070)
+├── DayXXX/              # Day folders (001-100)
 │   ├── main.py         # Primary script (snake_case naming)
 │   ├── README.md       # Project documentation
 │   ├── requirements.txt # Python dependencies
@@ -92,10 +99,14 @@ Key areas covered across the days:
 - **Data Science**: Pandas, NumPy, Matplotlib, Seaborn, Plotly
 - **Games & Graphics**: Turtle graphics, Pong, Snake, Breakout
 - **GUI Development**: Tkinter applications, password managers
-- **Web Development**: Flask, Jinja2 templating, routing, static files
+- **Web Development**: Flask, Jinja2 templating, routing, static files, e-commerce
 - **Forms & Validation**: WTForms, Flask-WTF, form validation, CSRF protection
 - **Databases**: SQLAlchemy, SQLite, CRUD operations, relationships
 - **Authentication**: Flask-Login, password hashing, user sessions
+- **API Development**: RESTful APIs, API key authentication, JSON serialization
+- **Data Science**: Pandas, NumPy, Matplotlib, Seaborn, Plotly, SciPy
+- **Machine Learning**: scikit-learn, Linear/Logistic Regression, Random Forests, Gradient Boosting, K-Means clustering
+- **Desktop Apps**: Tkinter GUI (calculator, typing test, to-do app, watermark tool)
 - **Security**: Environment variables, .env files, secret management
 - **Development Tools**: Git/GitHub, CLI, virtual environments, code style
 - **HTML/CSS**: Bootstrap, responsive design, semantic HTML
