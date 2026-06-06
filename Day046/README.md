@@ -182,7 +182,7 @@ load_dotenv()
 
 ### 3. Run the Script
 ```bash
-python main.py
+python spotify_playlist.py
 ```
 
 ## Project Workflow
@@ -345,7 +345,7 @@ is_public = input("Make playlist public? (y/n): ").lower() == 'y'
 
 ```
 Day046/
-├── main.py                                 # Main application
+├── spotify_playlist.py                                 # Main application
 ├── billboard_hot_100_2000-12-30.txt       # Generated song list
 └── README.md                               # This file
 ```

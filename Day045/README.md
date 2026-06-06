@@ -24,7 +24,7 @@ BeautifulSoup is an HTML/XML parser that transforms messy, complex HTML code int
 
 ## Project Contents
 
-### main.py
+### web_scraper.py
 A comprehensive guide with 4 practical examples:
 
 1. **Example 1: Simple HTML Parsing**
@@ -67,7 +67,7 @@ pip install -r requirements.txt
 
 Run the main script to see all examples:
 ```bash
-python main.py
+python web_scraper.py
 ```
 
 ### Basic Usage Example

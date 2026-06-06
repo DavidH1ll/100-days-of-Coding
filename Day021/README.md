@@ -4,7 +4,7 @@
 Complete the Snake game: add scoring, game over detection, and polish movement handling.
 
 ## Files
-- main.py – initializes screen, game loop, input bindings.
+- snake_game.py – initializes screen, game loop, input bindings.
 - snake.py (from Day 20) – movement and growth.
 - food.py (from Day 20) – random food placement.
 - score.py – new scoreboard class (track score, display, game over text).
@@ -17,4 +17,4 @@ Complete the Snake game: add scoring, game over detection, and polish movement h
 
 ## Run
 ````bash
-python main.py
+python snake_game.py

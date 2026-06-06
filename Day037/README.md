@@ -23,7 +23,7 @@ All authenticated endpoints send `X-USER-TOKEN` header.
 ## File Overview
 ```
 Day037/
-├── main.py      # Pixela CLI client
+├── pixela_tracker.py      # Pixela CLI client
 └── README.md    # This file
 ```
 
@@ -39,43 +39,43 @@ You can override with flags (`--username`, `--token`, `--graph`).
 ## Creating a User
 Only perform once per Pixela account:
 ```powershell
-python main.py create-user yourusername your-secret-token
+python pixela_tracker.py create-user yourusername your-secret-token
 ```
 Response should contain `"isSuccess":true` if created.
 
 ## Creating a Graph
 ```powershell
-python main.py create-graph cycling "Cycling Distance" km float --color shibafu --timezone Europe/London
+python pixela_tracker.py create-graph cycling "Cycling Distance" km float --color shibafu --timezone Europe/London
 ```
 Common colors: `shibafu, momiji, sora, ichou, ajisai, kuro`.
 Graph URL afterwards:
 ```powershell
-python main.py graph-url
+python pixela_tracker.py graph-url
 ```
 
 ## Logging a Habit (Add Pixel)
 Default date = today:
 ```powershell
-python main.py add 12.7          # e.g. 12.7 km cycled
+python pixela_tracker.py add 12.7          # e.g. 12.7 km cycled
 ```
 Past date:
 ```powershell
-python main.py add 8 --date 20250103
+python pixela_tracker.py add 8 --date 20250103
 ```
 
 ## Updating a Day
 ```powershell
-python main.py update 15 --date 20250103
+python pixela_tracker.py update 15 --date 20250103
 ```
 
 ## Deleting a Day
 ```powershell
-python main.py delete --date 20250103
+python pixela_tracker.py delete --date 20250103
 ```
 
 ## Opening Your Graph
 ```powershell
-python main.py graph-url
+python pixela_tracker.py graph-url
 ```
 Outputs: `https://pixe.la/v1/users/<username>/graphs/<graph_id>.html`
 
@@ -107,7 +107,7 @@ Create a PowerShell script `log_cycle.ps1`:
 $env:PIXELA_USERNAME="yourusername"
 $env:PIXELA_TOKEN="your-secret-token"
 $env:PIXELA_GRAPH_ID="cycling"
-python "Day037/main.py" add 10.2
+python "Day037/pixela_tracker.py" add 10.2
 ```
 Schedule in Windows Task Scheduler for 20:00 every day.
 

@@ -53,7 +53,7 @@ USER_AGE=30
 
 ### 3. Run the Application
 ```bash
-python main.py
+python exercise_tracker.py
 ```
 
 ## Usage Examples
@@ -129,7 +129,7 @@ Tell me which exercises you did: ran 5km and cycled for 20 minutes
 - Example: "walked 3km" or "swimming for 45 minutes"
 
 **"Missing required environment variables"**
-- Check `.env` file exists and is in same directory as `main.py`
+- Check `.env` file exists and is in same directory as `exercise_tracker.py`
 - Verify all API credentials are correct
 - Restart terminal after creating `.env`
 

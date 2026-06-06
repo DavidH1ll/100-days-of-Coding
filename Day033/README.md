@@ -46,20 +46,20 @@ $env:DISTANCE_DEG_THRESHOLD="5"
 
 ## Run Once (manual check)
 ```powershell
-python .\main.py
+python .\iss_notifier.py
 ```
 
 ## Continuous Loop
 Add `--loop` flag:
 ```powershell
-python .\main.py --loop
+python .\iss_notifier.py --loop
 ```
 Stops with Ctrl + C.
 
 ## Testing
 Set `FORCE_NOTIFY=true` and `DRY_RUN=true` to verify email formatting regardless of position or night:
 ```powershell
-$env:FORCE_NOTIFY="true"; $env:DRY_RUN="true"; python .\main.py
+$env:FORCE_NOTIFY="true"; $env:DRY_RUN="true"; python .\iss_notifier.py
 ```
 
 ## Notes

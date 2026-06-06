@@ -4,7 +4,7 @@
 Enhance a password manager by adding robust exception handling and data persistence with JSON.
 
 ## Files
-- main.py – core app logic (generate, save, retrieve credentials).
+- password_manager_v2.py – core app logic (generate, save, retrieve credentials).
 - non_existent_file.txt – dummy to trigger FileNotFoundError demo.
 - README.md – documentation.
 
@@ -28,7 +28,7 @@ Enhance a password manager by adding robust exception handling and data persiste
 
 ## Run
 ```bash
-python main.py
+python password_manager_v2.py
 ```
 
 ## Enhancement Ideas

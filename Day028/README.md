@@ -4,7 +4,7 @@
 Implement the Pomodoro productivity technique (work/break intervals) with a Tkinter GUI, timers, and session tracking.
 
 ## Files
-- main.py – Tkinter app (window setup, canvas clock, start/reset buttons, interval scheduling).
+- pomodoro_timer.py – Tkinter app (window setup, canvas clock, start/reset buttons, interval scheduling).
 
 ## Features
 - Work and short/long break cycles.
@@ -25,11 +25,11 @@ Implement the Pomodoro productivity technique (work/break intervals) with a Tkin
 - Short Break: 5 minutes
 - Long Break: 20 minutes (after several work sessions)
 
-(Check `main.py` constants: e.g., WORK_MIN, SHORT_BREAK_MIN, LONG_BREAK_MIN)
+(Check `pomodoro_timer.py` constants: e.g., WORK_MIN, SHORT_BREAK_MIN, LONG_BREAK_MIN)
 
 ## Run
 ```bash
-python main.py
+python pomodoro_timer.py
 ```
 
 ## Flow

@@ -4,7 +4,7 @@
 Introduce Tkinter: windows, widgets, layout (pack / grid), events, and working with function parameters (default values, *args, **kwargs).
 
 ## Files
-- main.py – GUI demo (window setup, labels, entry, button callback).
+- unit_converter.py – GUI demo (window setup, labels, entry, button callback).
 
 ## Concepts
 - Creating root window: `Tk()`, `mainloop()`.
@@ -17,7 +17,7 @@ Introduce Tkinter: windows, widgets, layout (pack / grid), events, and working w
 
 ## Run
 ```bash
-python main.py
+python unit_converter.py
 ```
 
 ## Enhancement Ideas

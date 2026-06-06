@@ -565,7 +565,7 @@ WebDriverWait(driver, 10).until(
 
 ```
 Day048/
-├── main.py                      # Main Selenium library and functions
+├── selenium_automation.py                      # Main Selenium library and functions
 └── README.md                    # This file
 ```
 

@@ -40,11 +40,11 @@ $env:FROM_NAME="Birthday Bot"
 ### Running
 Dry run (prints what would be sent):
 ```powershell
-python .\main.py
+python .\birthday_emailer.py
 ```
 Real send (after setting `DRY_RUN` to false):
 ```powershell
-python .\main.py
+python .\birthday_emailer.py
 ```
 
 ## Extending

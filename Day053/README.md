@@ -24,7 +24,7 @@ Implemented web scraping techniques using both Beautiful Soup and Selenium to ex
 ## How to Run
 ```bash
 pip install beautifulsoup4 selenium requests
-python main.py
+python selenium_scraper.py
 ```
 
 ## Key Concepts

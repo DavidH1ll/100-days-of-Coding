@@ -4,7 +4,7 @@
 Practice Python turtle graphics: drawing geometric shapes, generating color palettes, producing a dot painting (Hirst style).
 
 ## Files
-- main.py – contains drawing logic (shapes / dot grid).
+- hirst_painting.py – contains drawing logic (shapes / dot grid).
 
 ## Concepts
 - turtle module setup (speed, colormode, pen control).
@@ -15,7 +15,7 @@ Practice Python turtle graphics: drawing geometric shapes, generating color pale
 
 ## Run
 ```bash
-python main.py
+python hirst_painting.py
 ```
 
 ## Enhancement Ideas

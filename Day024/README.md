@@ -4,7 +4,7 @@
 Automate personalized letter generation using a template and a list of names.
 
 ## Files
-- main.py – reads names, loads template, generates output letters.
+- mail_merge.py – reads names, loads template, generates output letters.
 - letters/starting_letter.txt – base template containing placeholder `[name]`.
 - names/invited_names.txt – one name per line.
 - Output/ – generated letters (one file per name).
@@ -17,4 +17,4 @@ Automate personalized letter generation using a template and a list of names.
 
 ## Run
 ````bash
-python main.py
+python mail_merge.py
