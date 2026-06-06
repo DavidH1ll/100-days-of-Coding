@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="text-center py-5">
+    <i class="fa-solid fa-circle-check fa-5x text-success mb-3"></i>
+    <h1>Order Confirmed!</h1>
+    <p class="text-muted">Thank you for your purchase.</p>
+    <div class="card bg-dark border-secondary mx-auto my-4" style="max-width: 400px;">
+        <div class="card-body">
+            <p class="d-flex justify-content-between"><span>Subtotal:</span><span>${{ "%.2f"|format(subtotal) }}</span></p>
+            <p class="d-flex justify-content-between"><span>HST (13%):</span><span>${{ "%.2f"|format(hst) }}</span></p>
+            <hr class="border-secondary">
+            <p class="d-flex justify-content-between fw-bold fs-5"><span>Total:</span><span>${{ "%.2f"|format(total) }}</span></p>
+        </div>
+    </div>
+    <a href="/" class="btn btn-outline-light">Continue Shopping</a>
+</div>
+{% endblock %}

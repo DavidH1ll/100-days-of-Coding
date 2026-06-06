@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="mb-4"><i class="fa-solid fa-plus-circle me-2"></i>Add a Cafe</h1>
+
+<div class="row">
+    <div class="col-md-8 col-lg-6">
+        <div class="card bg-dark border-secondary">
+            <div class="card-body">
+                <form method="POST">
+                    {{ form.hidden_tag() }}
+                    <div class="mb-3">
+                        {{ form.name.label(class="form-label") }}
+                        {{ form.name(class="form-control bg-dark text-light border-secondary") }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.location.label(class="form-label") }}
+                        {{ form.location(class="form-control bg-dark text-light border-secondary") }}
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col">
+                            {{ form.wifi_rating.label(class="form-label") }}
+                            {{ form.wifi_rating(class="form-select bg-dark text-light border-secondary") }}
+                        </div>
+                        <div class="col">
+                            {{ form.coffee_rating.label(class="form-label") }}
+                            {{ form.coffee_rating(class="form-select bg-dark text-light border-secondary") }}
+                        </div>
+                        <div class="col">
+                            {{ form.power_outlets.label(class="form-label") }}
+                            {{ form.power_outlets(class="form-select bg-dark text-light border-secondary") }}
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        {{ form.image_url.label(class="form-label") }}
+                        {{ form.image_url(class="form-control bg-dark text-light border-secondary", placeholder="https://...") }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.description.label(class="form-label") }}
+                        {{ form.description(class="form-control bg-dark text-light border-secondary", rows="3") }}
+                    </div>
+                    {{ form.submit(class="btn btn-outline-light") }}
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

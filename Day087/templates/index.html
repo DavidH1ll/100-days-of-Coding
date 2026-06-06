@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="mb-4"><i class="fa-solid fa-location-dot me-2"></i>Work-Friendly Cafes</h1>
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    {% for cafe in cafes %}
+    <div class="col">
+        <div class="card bg-dark border-secondary h-100 cafe-card">
+            {% if cafe.image_url %}
+            <img src="{{ cafe.image_url }}" class="card-img-top" alt="{{ cafe.name }}" style="height: 180px; object-fit: cover;">
+            {% else %}
+            <div class="card-img-top bg-secondary d-flex align-items-center justify-content-center" style="height: 180px;">
+                <i class="fa-solid fa-mug-hot fa-3x text-muted"></i>
+            </div>
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ cafe.name }}</h5>
+                <p class="card-text text-muted small"><i class="fa-solid fa-map-pin me-1"></i>{{ cafe.location }}</p>
+                <div class="mb-2">
+                    <span class="badge bg-success me-1">WiFi {{ '★' * cafe.wifi_rating }}</span>
+                    <span class="badge bg-warning text-dark me-1">Coffee {{ '★' * cafe.coffee_rating }}</span>
+                    <span class="badge bg-info">{{ cafe.power_outlets }} outlets</span>
+                </div>
+                {% if cafe.description %}
+                <p class="card-text small">{{ cafe.description }}</p>
+                {% endif %}
+                <a href="{{ url_for('delete_cafe', cafe_id=cafe.id) }}" class="btn btn-outline-danger btn-sm" onclick="return confirm('Delete this cafe?')">
+                    <i class="fa-solid fa-trash"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% if not cafes %}
+<div class="text-center py-5">
+    <p class="text-muted">No cafes added yet. <a href="{{ url_for('add_cafe') }}" class="text-info">Add one!</a></p>
+</div>
+{% endif %}
+{% endblock %}

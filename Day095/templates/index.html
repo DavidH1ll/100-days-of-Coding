@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Collection API</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: #1a1a2e; color: #e0e0e0; padding: 30px; }
+        h1 { color: #e94560; margin-bottom: 8px; }
+        .subtitle { color: #888; margin-bottom: 30px; }
+        .endpoint { background: #16213e; border-radius: 8px; padding: 16px 20px; margin-bottom: 12px; }
+        .method { display: inline-block; padding: 4px 10px; border-radius: 4px; font-weight: bold; font-size: 13px; margin-right: 10px; }
+        .get { background: #2ecc71; color: #1a1a2e; }
+        .post { background: #3498db; color: #1a1a2e; }
+        .put { background: #f39c12; color: #1a1a2e; }
+        .delete { background: #e74c3c; color: #1a1a2e; }
+        .path { font-family: monospace; font-size: 15px; color: #a8d8ea; }
+        .desc { color: #aaa; margin-top: 6px; }
+        .key-info { background: #16213e; border-radius: 8px; padding: 16px 20px; margin-top: 20px; }
+        .key-info code { background: #0f3460; padding: 2px 8px; border-radius: 4px; color: #e94560; }
+    </style>
+</head>
+<body>
+    <h1>📚 Book Collection API</h1>
+    <p class="subtitle">A RESTful API for managing a personal book collection</p>
+
+    {% for ep in endpoints %}
+    <div class="endpoint">
+        <span class="method {{ ep.method.lower() }}">{{ ep.method }}</span>
+        <span class="path">{{ ep.path }}</span>
+        <div class="desc">{{ ep.description }}</div>
+    </div>
+    {% endfor %}
+
+    <div class="key-info">
+        <p>API Key: <code>{{ api_key }}</code></p>
+        <p style="color: #888; margin-top: 8px;">Include in header: <code>X-API-Key: {{ api_key }}</code> or query: <code>?api_key={{ api_key }}</code></p>
+    </div>
+</body>
+</html>

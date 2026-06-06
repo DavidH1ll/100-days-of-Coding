@@ -1,0 +1,3 @@
+.cafe-card { transition: transform 0.2s, box-shadow 0.2s; }
+.cafe-card:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(0,0,0,0.5); }
+.form-control:focus, .form-select:focus { border-color: #0dcaf0; box-shadow: 0 0 0 0.2rem rgba(13,202,240,0.25); }
