@@ -13,7 +13,7 @@ MyPass is a simple and secure password manager built using Python's Tkinter libr
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/MyPass.git
+   git clone https://github.com/DavidH1ll/100-days-of-Coding.git
    ```
 2. Navigate to the project directory:
    ```

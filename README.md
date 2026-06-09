@@ -265,8 +265,8 @@ Key areas covered across the days:
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/YourUsername/100-days-of-coding.git
-   cd 100-days-of-coding
+   git clone https://github.com/DavidH1ll/100-days-of-Coding.git
+   cd 100-days-of-Coding
    ```
 
 2. ***Create a virtual environment***
