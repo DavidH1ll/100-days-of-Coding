@@ -1,0 +1,10 @@
+# Fix GitHub language stats — this is a Python bootcamp, not an HTML project
+# HTML/CSS files are either Flask/Jinja templates or Plotly-generated output
+
+# Flask/Jinja templates (supporting Python backend)
+*.html linguist-documentation
+*.css linguist-documentation
+
+# Plotly-generated interactive chart exports (4.8MB each, drowning out Python stats)
+Day075_App_Store_Analysis/*.html linguist-generated
+Day078_Nobel_Prize/*.html linguist-generated
