@@ -108,20 +108,23 @@ er.name
 
 # Generated data science / Plotly outputs (regenerable by running the script).
 # Keeps the repo small and prevents reviewers from seeing stale generated charts.
-# Affected day ranges (072-080, 100) don't overlap with the Flask template
+# Affected day ranges (072-099, 100) don't overlap with the Flask template
 # days (056-069, 083, 087, 095, 096), so the patterns are safe without an
 # explicit templates/ exclusion.
 # Convention: future days with generated figures should put them in a
 # `figures/` or `output/` subfolder so they're easy to gitignore.
-Day07[2-9]_*/*.png
-Day07[5-9]_*/*.html
-Day08[0-9]_*/*.png
-Day100_*/*.png
-Day100_*/*.html
+# Day folders are 3 digits (Day070-Day099), so patterns need 2 wildcards.
+# gitignore uses fnmatch, NOT regex — [^/]+ is invalid; use [^/]* or *.
+Day07[0-9][0-9]_[^/]*/[0-9][0-9]_*.png
+Day07[0-9][0-9]_[^/]*/[0-9][0-9]_*.html
+Day07[0-9][0-9]_[^/]*/[!t]*.png
+Day07[0-9][0-9]_[^/]*/[!t]*.html
+Day08[0-9][0-9]_[^/]*/[!t]*.png
+Day08[0-9][0-9]_[^/]*/[!t]*.html
+Day09[0-9][0-9]_[^/]*/[!t]*.png
+Day09[0-9][0-9]_[^/]*/[!t]*.html
+Day100_[^/]*/[!t]*.png
+Day100_[^/]*/[!t]*.html
 
 # Jupyter Notebooks
-Day0[7-9][0-9]_[^/]+/[!t]*.png
-Day0[7-9][0-9]_[^/]+/*.png
-Day0[7-9][0-9]_[A-Za-z]+/[!t]*.png
-Day0[7-9][0-9]_[^/]?*.png
-Day0[7-9][0-9]_[ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_]*/[!t]*.png
+Day080_*/figures/*.png

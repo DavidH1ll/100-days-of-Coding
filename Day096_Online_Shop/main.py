@@ -1,19 +1,74 @@
 import os
-from flask import Flask, render_template, request, redirect, url_for, session, jsonify
+
+from flask import Flask, jsonify, redirect, render_template, request, session, url_for
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "shop-secret-key")
 
 PRODUCTS = [
-    {"id": 1, "name": "Wireless Headphones", "price": 79.99, "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300", "category": "Electronics"},
-    {"id": 2, "name": "Mechanical Keyboard", "price": 129.99, "image": "https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?w=300", "category": "Electronics"},
-    {"id": 3, "name": "Ergonomic Mouse", "price": 49.99, "image": "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=300", "category": "Electronics"},
-    {"id": 4, "name": "USB-C Hub", "price": 34.99, "image": "https://images.unsplash.com/photo-1625723044792-44de16ccb4e9?w=300", "category": "Accessories"},
-    {"id": 5, "name": "Laptop Stand", "price": 44.99, "image": "https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=300", "category": "Accessories"},
-    {"id": 6, "name": "Webcam 1080p", "price": 59.99, "image": "https://images.unsplash.com/photo-1587826080692-f439cd0b70da?w=300", "category": "Electronics"},
-    {"id": 7, "name": "Desk Lamp LED", "price": 39.99, "image": "https://images.unsplash.com/photo-1507473885765-e6ed057ab6fe?w=300", "category": "Office"},
-    {"id": 8, "name": "Monitor 27\"", "price": 299.99, "image": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=300", "category": "Electronics"},
-    {"id": 9, "name": "Notebook Set", "price": 14.99, "image": "https://images.unsplash.com/photo-1531346878377-a5be20888e57?w=300", "category": "Office"},
+    {
+        "id": 1,
+        "name": "Wireless Headphones",
+        "price": 79.99,
+        "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300",
+        "category": "Electronics",
+    },
+    {
+        "id": 2,
+        "name": "Mechanical Keyboard",
+        "price": 129.99,
+        "image": "https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?w=300",
+        "category": "Electronics",
+    },
+    {
+        "id": 3,
+        "name": "Ergonomic Mouse",
+        "price": 49.99,
+        "image": "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=300",
+        "category": "Electronics",
+    },
+    {
+        "id": 4,
+        "name": "USB-C Hub",
+        "price": 34.99,
+        "image": "https://images.unsplash.com/photo-1625723044792-44de16ccb4e9?w=300",
+        "category": "Accessories",
+    },
+    {
+        "id": 5,
+        "name": "Laptop Stand",
+        "price": 44.99,
+        "image": "https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=300",
+        "category": "Accessories",
+    },
+    {
+        "id": 6,
+        "name": "Webcam 1080p",
+        "price": 59.99,
+        "image": "https://images.unsplash.com/photo-1587826080692-f439cd0b70da?w=300",
+        "category": "Electronics",
+    },
+    {
+        "id": 7,
+        "name": "Desk Lamp LED",
+        "price": 39.99,
+        "image": "https://images.unsplash.com/photo-1507473885765-e6ed057ab6fe?w=300",
+        "category": "Office",
+    },
+    {
+        "id": 8,
+        "name": 'Monitor 27"',
+        "price": 299.99,
+        "image": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=300",
+        "category": "Electronics",
+    },
+    {
+        "id": 9,
+        "name": "Notebook Set",
+        "price": 14.99,
+        "image": "https://images.unsplash.com/photo-1531346878377-a5be20888e57?w=300",
+        "category": "Office",
+    },
 ]
 
 
@@ -69,8 +124,7 @@ def checkout():
 
     cart = session.get("cart", {})
     total = sum(
-        next(p["price"] for p in PRODUCTS if p["id"] == int(pid)) * qty
-        for pid, qty in cart.items()
+        next(p["price"] for p in PRODUCTS if p["id"] == int(pid)) * qty for pid, qty in cart.items()
     )
     hst = round(total * 0.13, 2)
     grand_total = round(total + hst, 2)

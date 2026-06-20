@@ -14,32 +14,37 @@ API Endpoints:
 - DELETE /report-closed/<cafe_id> - Delete a cafe (requires API key)
 """
 
+import os
+import random
+
 from flask import Flask, jsonify, render_template, request
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import Boolean, Integer, String
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
-from sqlalchemy import Integer, String, Boolean
-import random
-import os
 
 # Initialize Flask app
 app = Flask(__name__)
+
 
 # Configure SQLite database
 class Base(DeclarativeBase):
     pass
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///cafes.db'
+
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URI", "sqlite:///cafes.db")
 db = SQLAlchemy(model_class=Base)
 db.init_app(app)
 
 # API Key for secured endpoints - Load from environment
-API_KEY = os.environ.get('API_KEY', 'TopSecretAPIKey')
+API_KEY = os.environ.get("API_KEY", "TopSecretAPIKey")
 
 
 # ==================== DATABASE MODEL ====================
 
+
 class Cafe(db.Model):
     """Database model for Cafe with all remote-work related information."""
+
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     name: Mapped[str] = mapped_column(String(250), unique=True, nullable=False)
     map_url: Mapped[str] = mapped_column(String(500), nullable=False)
@@ -56,7 +61,7 @@ class Cafe(db.Model):
         """Convert Cafe object to dictionary for JSON serialization."""
         # Method 1: Using dictionary comprehension
         return {column.name: getattr(self, column.name) for column in self.__table__.columns}
-        
+
         # Method 2: Manual dictionary creation (alternative)
         # return {
         #     "id": self.id,
@@ -80,6 +85,7 @@ with app.app_context():
 
 # ==================== ROUTES ====================
 
+
 @app.route("/")
 def home():
     """Render API documentation homepage."""
@@ -88,14 +94,15 @@ def home():
 
 # ==================== HTTP GET - Read Records ====================
 
+
 @app.route("/random")
 def get_random_cafe():
     """
     GET a random cafe from the database.
-    
+
     Returns:
         JSON: Random cafe object
-    
+
     Example Response:
         {
             "cafe": {
@@ -115,7 +122,7 @@ def get_random_cafe():
     """
     result = db.session.execute(db.select(Cafe))
     all_cafes = result.scalars().all()
-    
+
     if all_cafes:
         random_cafe = random.choice(all_cafes)
         return jsonify(cafe=random_cafe.to_dict())
@@ -127,10 +134,10 @@ def get_random_cafe():
 def get_all_cafes():
     """
     GET all cafes from the database.
-    
+
     Returns:
         JSON: List of all cafe objects
-    
+
     Example Response:
         {
             "cafes": [
@@ -149,10 +156,10 @@ def get_all_cafes():
     """
     result = db.session.execute(db.select(Cafe).order_by(Cafe.name))
     all_cafes = result.scalars().all()
-    
+
     # Convert list of Cafe objects to list of dictionaries
     cafes_list = [cafe.to_dict() for cafe in all_cafes]
-    
+
     return jsonify(cafes=cafes_list)
 
 
@@ -160,16 +167,16 @@ def get_all_cafes():
 def search_cafe():
     """
     GET cafes by location query parameter.
-    
+
     Query Parameters:
         loc (str): Location to search for (e.g., ?loc=Peckham)
-    
+
     Returns:
         JSON: List of cafes in that location or error message
-    
+
     Example Request:
         GET /search?loc=Peckham
-    
+
     Example Response (Success):
         {
             "cafes": [
@@ -181,7 +188,7 @@ def search_cafe():
                 }
             ]
         }
-    
+
     Example Response (Not Found):
         {
             "error": {
@@ -191,28 +198,25 @@ def search_cafe():
     """
     # Get query parameter 'loc' from URL
     query_location = request.args.get("loc")
-    
+
     # Search database for cafes in that location (case-insensitive)
-    result = db.session.execute(
-        db.select(Cafe).where(Cafe.location == query_location)
-    )
+    result = db.session.execute(db.select(Cafe).where(Cafe.location == query_location))
     all_cafes = result.scalars().all()
-    
+
     if all_cafes:
         return jsonify(cafes=[cafe.to_dict() for cafe in all_cafes])
     else:
-        return jsonify(error={
-            "Not Found": "Sorry, we don't have a cafe at that location."
-        }), 404
+        return jsonify(error={"Not Found": "Sorry, we don't have a cafe at that location."}), 404
 
 
 # ==================== HTTP POST - Create Record ====================
+
 
 @app.route("/add", methods=["POST"])
 def add_cafe():
     """
     POST a new cafe to the database.
-    
+
     Required Form Data:
         - name: Cafe name (str)
         - map_url: Google Maps URL (str)
@@ -224,10 +228,10 @@ def add_cafe():
         - has_sockets: Power socket availability (bool)
         - can_take_calls: Phone call friendly (bool)
         - coffee_price: Coffee price (str, e.g., "£2.50")
-    
+
     Returns:
         JSON: Success message or error
-    
+
     Example Request (POST form data):
         name=TestCafe
         map_url=https://goo.gl/maps/test
@@ -239,7 +243,7 @@ def add_cafe():
         has_sockets=True
         can_take_calls=False
         coffee_price=£3.00
-    
+
     Example Response (Success):
         {
             "response": {
@@ -260,57 +264,56 @@ def add_cafe():
             can_take_calls=bool(request.form.get("can_take_calls")),
             coffee_price=request.form.get("coffee_price"),
         )
-        
+
         db.session.add(new_cafe)
         db.session.commit()
-        
-        return jsonify(response={
-            "success": "Successfully added the new cafe."
-        }), 201  # 201 Created status code
-        
+
+        return jsonify(
+            response={"success": "Successfully added the new cafe."}
+        ), 201  # 201 Created status code
+
     except Exception as e:
-        return jsonify(error={
-            "Bad Request": f"Failed to add cafe. {str(e)}"
-        }), 400
+        return jsonify(error={"Bad Request": f"Failed to add cafe. {e!s}"}), 400
 
 
 # ==================== HTTP PATCH - Update Record ====================
+
 
 @app.route("/update-price/<int:cafe_id>", methods=["PATCH"])
 def update_price(cafe_id):
     """
     PATCH (update) the coffee price for a specific cafe.
-    
+
     URL Parameters:
         cafe_id (int): The ID of the cafe to update
-    
+
     Query Parameters:
         new_price (str): The new coffee price (e.g., ?new_price=£3.50)
-    
+
     Headers Required:
         api-key: Your API key for authentication
-    
+
     Returns:
         JSON: Success message or error
-    
+
     Example Request:
         PATCH /update-price/42?new_price=£3.50
         Headers: api-key: TopSecretAPIKey
-    
+
     Example Response (Success):
         {
             "response": {
                 "success": "Successfully updated the price."
             }
         }
-    
+
     Example Response (Not Found):
         {
             "error": {
                 "Not Found": "Sorry, a cafe with that id was not found in the database."
             }
         }
-    
+
     Example Response (Forbidden):
         {
             "error": "Sorry, that's not allowed. Make sure you have the correct api_key."
@@ -318,57 +321,60 @@ def update_price(cafe_id):
     """
     # Check API key authentication
     if request.args.get("api-key") != API_KEY:
-        return jsonify(error="Sorry, that's not allowed. Make sure you have the correct api_key."), 403
-    
+        return jsonify(
+            error="Sorry, that's not allowed. Make sure you have the correct api_key."
+        ), 403
+
     # Get new price from query parameter
     new_price = request.args.get("new_price")
-    
+
     # Find cafe by ID
     cafe = db.session.get(Cafe, cafe_id)
-    
+
     if cafe:
         cafe.coffee_price = new_price
         db.session.commit()
         return jsonify(response={"success": "Successfully updated the price."}), 200
     else:
-        return jsonify(error={
-            "Not Found": "Sorry, a cafe with that id was not found in the database."
-        }), 404
+        return jsonify(
+            error={"Not Found": "Sorry, a cafe with that id was not found in the database."}
+        ), 404
 
 
 # ==================== HTTP DELETE - Delete Record ====================
+
 
 @app.route("/report-closed/<int:cafe_id>", methods=["DELETE"])
 def delete_cafe(cafe_id):
     """
     DELETE a cafe from the database (report it as closed).
-    
+
     URL Parameters:
         cafe_id (int): The ID of the cafe to delete
-    
+
     Query Parameters:
         api-key (str): Your API key for authentication
-    
+
     Returns:
         JSON: Success message or error
-    
+
     Example Request:
         DELETE /report-closed/42?api-key=TopSecretAPIKey
-    
+
     Example Response (Success):
         {
             "response": {
                 "success": "Successfully deleted the cafe."
             }
         }
-    
+
     Example Response (Not Found):
         {
             "error": {
                 "Not Found": "Sorry, a cafe with that id was not found in the database."
             }
         }
-    
+
     Example Response (Forbidden):
         {
             "error": "Sorry, that's not allowed. Make sure you have the correct api_key."
@@ -376,24 +382,26 @@ def delete_cafe(cafe_id):
     """
     # Check API key authentication
     api_key = request.args.get("api-key")
-    
+
     if api_key != API_KEY:
-        return jsonify(error="Sorry, that's not allowed. Make sure you have the correct api_key."), 403
-    
+        return jsonify(
+            error="Sorry, that's not allowed. Make sure you have the correct api_key."
+        ), 403
+
     # Find cafe by ID
     cafe = db.session.get(Cafe, cafe_id)
-    
+
     if cafe:
         db.session.delete(cafe)
         db.session.commit()
         return jsonify(response={"success": "Successfully deleted the cafe."}), 200
     else:
-        return jsonify(error={
-            "Not Found": "Sorry, a cafe with that id was not found in the database."
-        }), 404
+        return jsonify(
+            error={"Not Found": "Sorry, a cafe with that id was not found in the database."}
+        ), 404
 
 
 # ==================== RUN APPLICATION ====================
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True)

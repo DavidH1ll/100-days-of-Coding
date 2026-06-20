@@ -69,6 +69,21 @@ Suggestions for:
 - Use type hints where appropriate
 - Keep functions focused and small
 
+## Project Layout
+
+See [`LAYOUT.md`](LAYOUT.md) for the standard structure for day
+folders. The short version: descriptive Python file names, type
+hints and docstrings, a `tests/` subfolder with pytest, generated
+outputs in `figures/`, and secrets in `.env` (not committed).
+
+The tool config lives at the repo root:
+
+- `pyproject.toml` — ruff config + pytest config
+- `.pre-commit-config.yaml` — pre-commit hooks
+- `.github/workflows/ci.yml` — CI (ruff + pytest on push and PR)
+
+Run `pre-commit install` once to enable local checks.
+
 ## What I'm NOT Looking For
 
 - Complete rewrites (this is a learning journey)
