@@ -45,7 +45,10 @@ docstring-code-format = true
 
 [tool.pytest.ini_options]
 minversion = "7.0"
-testpaths = ["tests"]
+# Discover tests in the root tests/ folder (if any) and in each
+# refactored day's tests/ subfolder. The Day* pattern is shell-
+# friendly; pytest also accepts this directly via testpaths.
+testpaths = ["tests", "Day*_*/tests"]
 addopts = [
     "-ra",
     "--strict-markers",

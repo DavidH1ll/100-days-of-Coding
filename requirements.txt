@@ -41,6 +41,10 @@ twilio>=8.0.0  # SMS notifications (optional)
 # Scientific Computing
 scikit-learn>=1.3.0
 
+# Development and testing
+pytest>=7.0
+ruff>=0.6.0
+
 # Install all:
 #   pip install -r requirements.txt
 #
