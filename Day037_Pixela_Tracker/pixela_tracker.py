@@ -11,6 +11,11 @@ def _today() -> str:
     return dt.date.today().strftime("%Y%m%d")
 
 
+def _pixel_url(username: str, graph_id: str, date: str | None = None) -> str:
+    """Build a Pixela pixel URL for a given date (or the graph base URL if date is None)."""
+    base = f"{BASE_URL}/{username}/graphs/{graph_id}"
+    return f"{base}/{date}" if date else base
+
 def _require_env(name: str) -> str:
     val = os.getenv(name)
     if not val:
