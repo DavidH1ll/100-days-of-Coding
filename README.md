@@ -7,6 +7,9 @@
 
 A curated, day-by-day journey to practice and level up Python skills through small projects and focused exercises.
 
+> **Looking for the polished projects?** See [HIGHLIGHTS.md](HIGHLIGHTS.md) for a tour of the most polished work and the patterns the repo follows.
+> **Working on the repo itself?** See [LAYOUT.md](LAYOUT.md) for the standard structure each day folder should follow, and [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
+
 ## Table of Contents
 
 - [Overview](#overview)
@@ -14,6 +17,7 @@ A curated, day-by-day journey to practice and level up Python skills through sma
 - [Day-by-Day Index](#day-by-day-index)
 - [Featured Projects](#featured-projects)
 - [Repository Structure](#repository-structure)
+- [Tests & Code Quality](#tests--code-quality)
 - [Highlights](#highlights)
 - [Installation](#installation)
 - [API Keys Setup](#api-keys-setup)
@@ -208,19 +212,29 @@ This repository documents progress across 100 days of Python. Topics range from 
 
 ## Repository Structure
 
-The repository follows a consistent structure with standardized naming conventions:
+The repository follows a consistent structure with standardized naming conventions. The full standard is documented in [LAYOUT.md](LAYOUT.md); the short version:
 
 ```
 100-days-of-coding/
-├── DayXXX/              # Day folders (001-100)
-│   ├── main.py         # Primary script (snake_case naming)
-│   ├── README.md       # Project documentation
-│   ├── requirements.txt # Python dependencies
-│   ├── .env.example    # Environment variable template
-│   └── ...             # Additional modules and assets
-├── .gitignore          # Excludes .env files and sensitive data
-├── requirements.txt    # Global dependencies
-└── README.md           # This file
+├── DayXXX_Project_Name/  # Day folders (001-100)
+│   ├── main.py           # Primary script or app entry point
+│   ├── *.py              # Additional modules (helpers, models)
+│   ├── tests/            # Pytest tests (where added)
+│   │   └── conftest.py   # Test fixtures, per-day isolation
+│   ├── figures/          # Generated charts/HTML (gitignored)
+│   ├── data/             # Generated data files (gitignored)
+│   ├── README.md         # Project documentation
+│   ├── requirements.txt  # Python dependencies
+│   └── .env.example      # Environment variable template
+├── .github/workflows/    # GitHub Actions (CI)
+├── .pre-commit-config.yaml
+├── pyproject.toml        # ruff + pytest config
+├── LAYOUT.md             # Standard structure for day folders
+├── HIGHLIGHTS.md         # Tour of the polished projects
+├── CONTRIBUTING.md
+├── LICENSE
+├── requirements.txt      # Global dependencies (including dev)
+└── README.md             # This file
 ```
 
 **Recent Improvements:***
@@ -229,6 +243,52 @@ The repository follows a consistent structure with standardized naming conventio
 - ✅ All projects with dependencies include requirements.txt
 - ✅ Projects using secrets include .env.example templates
 - ✅ Hardcoded API keys moved to environment variables
+- ✅ 100 pytest tests across 5 days (Day 066, 080, 081, 096, 100)
+- ✅ `ruff` lint + format on every commit (pre-commit) and every push (CI)
+- ✅ Generated outputs moved to `figures/` and `data/` and gitignored
+
+## Tests & Code Quality
+
+The later day folders come with a proper test and quality setup:
+
+- **100 pytest tests** across 5 days: 066, 080, 081, 096, 100.
+  Full suite runs in ~5.5 s.
+- **`ruff`** for lint and format. Config in `pyproject.toml`.
+- **`pre-commit`** runs `ruff check --fix` and `ruff format` on every
+  commit.
+- **GitHub Actions** runs `ruff check`, `ruff format --check`, and
+  `pytest -v` on every push to `main`.
+
+### Running the tests
+
+From the repo root, with the venv activated:
+
+```bash
+pip install -r requirements.txt   # installs pytest + ruff
+pytest -v
+```
+
+To run tests for a single day:
+
+```bash
+pytest Day100_Earnings_Predictor/tests -v
+```
+
+### Running the linter
+
+```bash
+ruff check .
+ruff format --check .
+```
+
+### The `importlib` conftest pattern
+
+Several day folders have a `main.py` that is also the script entry
+point. Their `conftest.py` uses `importlib.util.spec_from_file_location`
+to load `main.py` as a uniquely-named module
+(e.g. `_main_Day066_REST_API`) so pytest can collect tests from
+multiple days in one run without `sys.modules` collisions. See
+[LAYOUT.md](LAYOUT.md) for details.
 
 ## Highlights
 
