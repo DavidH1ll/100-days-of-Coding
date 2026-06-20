@@ -26,3 +26,18 @@ loading, cleaning, and evaluation helpers. The full suite runs in
 pip install -r requirements.txt
 pytest Day080_House_Price_Predictor/tests -v
 ```
+
+## Output
+
+Running `house_price_predictor.py` writes the following files
+(under `figures/` and `data/`, both gitignored):
+
+- `figures/correlation_matrix.png` — feature correlation heatmap
+- `figures/feature_distributions.png` — per-feature histograms
+- `figures/model_comparison.png` — predicted vs actual scatter for
+  the chosen best model
+- `figures/model_evaluation.png` — residual plot
+- `data/california_clean.csv` — the processed dataset
+
+To regenerate after changing the model or data, delete the
+`figures/` and `data/` folders and re-run the script.
