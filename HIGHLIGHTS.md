@@ -71,13 +71,28 @@ RESTful cafe database with full CRUD and API-key auth. The original
 - Tests cover auth (200/401/403), CRUD, validation errors, and
   random-cafe endpoint.
 
+### Day 037 — Pixela Habit Tracker CLI
+[`Day037_Pixela_Tracker/`](Day037_Pixela_Tracker/)
+
+A small CLI for posting daily habit pixels to the Pixela API
+(create user, create graph, add/update/delete pixels, print graph
+URL). The original `pixela_tracker.py` was already cleanly factored
+into typed functions and an argparse dispatch — it just needed
+tests and a `.env.example` template.
+
+- 19 pytest tests covering the pure helpers (`_today`, `_require_env`),
+  every argparse subcommand, and the HTTP-using functions with
+  `requests` mocked.
+- Tests pin the env-var/CLI-override behaviour for the add/update
+  flow so the contract doesn't silently regress.
+
 ---
 
 ## Notable Patterns Across the Repo
 
 ### Test infrastructure
-- **100 pytest tests across 5 days** (066, 080, 081, 096, 100). Full
-  suite runs in ~5.5 s.
+- **119 pytest tests** across 6 days (037, 066, 080, 081, 096, 100).
+  Full suite runs in ~5.6 s.
 - **Cross-day conftest isolation.** Several days have a `main.py` that
   is also the script entry point. Their `conftest.py` files use
   `importlib.util.spec_from_file_location` to load `main.py` as a

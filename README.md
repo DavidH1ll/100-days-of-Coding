@@ -1,5 +1,6 @@
 # 100 Days of Coding (Python)
 
+![CI](https://github.com/DavidH1ll/100-days-of-Coding/actions/workflows/ci.yml/badge.svg)
 ![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)
 ![Progress](https://img.shields.io/badge/Progress-100%2F100-brightgreen.svg)
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
