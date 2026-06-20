@@ -58,3 +58,19 @@ CSV are written to `figures/` and `data/` and are gitignored.
 pip install -r requirements.txt
 pytest Day100_Earnings_Predictor/tests -v
 ```
+
+## Output
+
+Running `earnings_predictor.py` writes the following files
+(under `figures/` and `data/`, both gitignored):
+
+- `figures/eda_dashboard.png` — 6-panel EDA overview
+- `figures/correlation_heatmap.png` — feature correlation heatmap
+- `figures/model_comparison.png` — bar chart of CV R² across all
+  five models
+- `figures/feature_importance.png` — top feature importances for
+  the best model
+- `data/model_comparison.csv` — table of metrics for every model
+
+To regenerate after changing the pipeline, delete the `figures/`
+and `data/` folders and re-run the script.
