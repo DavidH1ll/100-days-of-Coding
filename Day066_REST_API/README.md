@@ -290,3 +290,16 @@ You've built a complete REST API demonstrating:
 You now understand how companies provide API services and can create your own!
 
 **Happy API Building! 🚀**
+
+## Tests
+
+This day ships with a pytest suite — 19 tests using Flask's
+`test_client`. The conftest sets a temp-file `DATABASE_URI` so the
+production `cafes.db` is never touched, and uses `importlib` to
+load the app under a per-day module name to avoid `sys.modules`
+collisions when pytest collects tests from multiple days.
+
+```bash
+pip install -r requirements.txt
+pytest Day066_REST_API/tests -v
+```

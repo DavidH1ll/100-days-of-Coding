@@ -46,3 +46,15 @@ Key lessons:
 ---
 
 **Day 100 Complete! The journey continues.** 🎉
+
+## Tests
+
+This day ships with a pytest suite — 19 tests covering the data
+loading, cleaning, evaluation, and feature-importance helpers. The
+full suite runs in ~3 s. Generated PNGs and the model-comparison
+CSV are written to `figures/` and `data/` and are gitignored.
+
+```bash
+pip install -r requirements.txt
+pytest Day100_Earnings_Predictor/tests -v
+```

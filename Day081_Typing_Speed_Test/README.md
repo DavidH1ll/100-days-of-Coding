@@ -21,3 +21,15 @@ Tkinter desktop app that tests typing speed. Displays a random passage, starts a
 The `Text` widget's tag system enabled per-character color highlighting without rebuilding the widget. The WPM formula (5 chars = 1 word) is the industry standard. The hardest part was coordinating the timer with keystroke events — using `after()` for the countdown and `KeyRelease` for stats updates kept them decoupled.
 
 **Day 81 Complete!** ✅
+
+## Tests
+
+This day ships with a pytest suite — 26 unit tests on the pure
+scoring functions (`compute_wpm`, `compute_accuracy`,
+`compute_completion`) in `scoring.py`. The tkinter GUI is in
+`main.py`; only the math is tested. The full suite runs in ~0.03 s.
+
+```bash
+pip install -r requirements.txt
+pytest Day081_Typing_Speed_Test/tests -v
+```
