@@ -60,3 +60,23 @@ filterwarnings = [
     "ignore::DeprecationWarning",
     "ignore::PendingDeprecationWarning",
 ]
+
+
+[tool.coverage.run]
+source = [
+    "Day037_Pixela_Tracker/pixela_tracker.py",
+    "Day066_REST_API/main.py",
+    "Day080_House_Price_Predictor/house_price_predictor.py",
+    "Day081_Typing_Speed_Test/scoring.py",
+    "Day096_Online_Shop/main.py",
+    "Day100_Earnings_Predictor/earnings_predictor.py",
+]
+omit = [
+    "*/tests/*",
+    "*/conftest.py",
+]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = false
+fail_under = 0  # informational for now; tighten as coverage grows
