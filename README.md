@@ -5,6 +5,11 @@
 ![Progress](https://img.shields.io/badge/Progress-100%2F100-brightgreen.svg)
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Code Style](https://img.shields.io/badge/code%20style-PEP%208-blue.svg)
+![Stars](https://img.shields.io/github/stars/DavidH1ll/100-days-of-Coding?style=flat)
+![Forks](https://img.shields.io/github/forks/DavidH1ll/100-days-of-Coding?style=flat)
+![Last Commit](https://img.shields.io/github/last-commit/DavidH1ll/100-days-of-Coding?style=flat)
+![Issues](https://img.shields.io/github/issues/DavidH1ll/100-days-of-Coding?style=flat)
+![Top Language](https://img.shields.io/github/languages/top/DavidH1ll/100-days-of-Coding?style=flat)
 
 A curated, day-by-day journey to practice and level up Python skills through small projects and focused exercises.
 
