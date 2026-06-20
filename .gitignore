@@ -81,12 +81,22 @@ passwords.txt
 *.sqlite
 instance/
 
-# Test Files
-test_*.py
-*_test.py
+# Test artifacts (test source files SHOULD be tracked)
 .pytest_cache/
 .coverage
+.coverage.*
 htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+.hypothesis/
+
+# Linter / formatter caches
+.ruff_cache/
+.mypy_cache/
+.pyre/
+.pyright/
 
 # Documentation
 *.pdf
