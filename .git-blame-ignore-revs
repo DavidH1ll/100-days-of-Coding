@@ -1,0 +1,10 @@
+# .git-blame-ignore-revs
+# Commits listed here are excluded from `git blame` output. Add the
+# SHA of any formatting-only or refactor-only commit that touched
+# many lines but introduced no semantic change, so that historical
+# blame stays useful.
+#
+# To make `git blame` honour this file in this repo, run:
+#   git config blame.ignoreRevsFile .git-blame-ignore-revs
+#
+# 7fdefa5 — Re-format Day 037 pixela_tracker.py (CRLF+tabs → LF+spaces)
