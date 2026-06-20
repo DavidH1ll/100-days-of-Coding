@@ -130,3 +130,14 @@ Inspired by Simone Giertz’s physical habit tracker concept—maintain unbroken
 
 ---
 Happy Tracking! 🚀
+
+## Tests
+
+This day ships with a pytest suite — 19 tests covering the pure
+helpers (`_today`, `_require_env`), every argparse subcommand, and
+the HTTP-using functions with `requests` mocked.
+
+```bash
+pip install -r requirements.txt
+pytest Day037_Pixela_Tracker/tests -v
+```
