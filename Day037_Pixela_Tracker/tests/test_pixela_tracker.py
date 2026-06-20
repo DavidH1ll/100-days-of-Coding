@@ -232,3 +232,20 @@ def test_graph_url_prints_url(
     pt.graph_url(args)
     captured = capsys.readouterr()
     assert "https://pixe.la/v1/users/alice/graphs/cycling.html" in captured.out
+
+
+# ---------------------------------------------------------------------------
+# _pixel_url
+# ---------------------------------------------------------------------------
+
+
+def test_pixel_url_no_date_returns_graph_base() -> None:
+    assert pt._pixel_url("alice", "cycling") == "https://pixe.la/v1/users/alice/graphs/cycling"
+
+
+def test_pixel_url_with_date_returns_pixel_url() -> None:
+    assert pt._pixel_url("alice", "cycling", "20260615") == "https://pixe.la/v1/users/alice/graphs/cycling/20260615"
+
+
+def test_pixel_url_uses_provided_username() -> None:
+    assert pt._pixel_url("bob", "reading", "20260101") == "https://pixe.la/v1/users/bob/graphs/reading/20260101"
